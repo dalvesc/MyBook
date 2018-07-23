@@ -2,44 +2,55 @@ package mybook.util;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
-/**
- * 
- * 
- * @author gabriela
- */
-public class Graph {   
-    private Map <Object, Vertex> vertices; 
-    
+public class Graph implements IGraph{   
+    private Map <Object, Vertex> vertices;     
+        
     private class Vertex{
         
         private Object data;
-        private HashSet adjacencies;
+        private Set adjacencies;
         
-        public Vertex(Object data){
+        private Vertex(Object data){
             this.data = data;
             adjacencies = new HashSet();           
         }
-        
-        public HashSet getAdjacencies() {
-            return adjacencies;
-        }        
-    }  
+    } 
     
-    public Graph(){
+    private Graph(){
         vertices = new HashMap();
     }
     
+    @Override
     public int numVertices(){
         return vertices.size();
     }
     
+    @Override
     public boolean addVertex(Object o){
         Vertex v = new Vertex(o);        
         return vertices.put(o,v) == null;
     }
     
+    @Override
+    public boolean removeVertex(Object o){
+        if (vertices.containsKey(o)){
+            Set keys = vertices.keySet();
+            
+            for(Object key: keys){
+                Vertex v = vertices.get(key);
+                Set adj = v.adjacencies;
+                adj.remove(o);
+            }
+            return vertices.remove(o) != null;
+        }
+        return false;
+    }
+    
+    @Override
     public boolean addEdge(Object origin, Object destiny){        
         if(vertices.containsKey(origin) && vertices.containsKey(destiny)){        
             Vertex v1 = vertices.get(origin);
@@ -51,6 +62,19 @@ public class Graph {
         return false;
     }
     
+    @Override
+    public boolean removeEdge(Object o1, Object o2){
+        if(vertices.containsKey(o1) && vertices.containsKey(o2)){        
+            Vertex v1 = vertices.get(o1);
+            Vertex v2 = vertices.get(o1);
+            v1.adjacencies.remove(o2);
+            v2.adjacencies.remove(o1);
+            return true;
+        }
+        return false;
+    }
+    
+    @Override
     public boolean hasEdge(Object v1, Object v2){
         if(vertices.containsKey(v1) && vertices.containsKey(v2)){ 
             Vertex vv1 = vertices.get(v1);
@@ -58,5 +82,31 @@ public class Graph {
             return vv1.adjacencies.contains(v2) && vv2.adjacencies.contains(v1);
         }
         return false;
+    }
+    
+    @Override
+    public int numAdjacencies (Object o){         
+        Vertex v = vertices.get(o);
+        return v.adjacencies.size();        
+    }
+       
+    @Override
+    public Iterator itrAdjacencies(Object o) {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Iterator itrVertices() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

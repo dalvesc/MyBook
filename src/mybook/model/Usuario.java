@@ -1,27 +1,32 @@
 package mybook.model;
 
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Usuario {
 
-    private String password;
-    private String nome;
-    private String email;
-    private String nascimento;
-    private String cidade;
-    private String telefone;
+    private String password, nome, email, nascimento, cidade, telefone, endereco;
+    private List<String> postagens; 
+    private List<File> arquivos;
     //foto - ???
     //amigos - arestas
     //postagens - lista?
     //arquivos - lista?
 
-    public Usuario(String password, String nome, String email, String nascimento, String cidade, String telefone) {
+    public Usuario(String password, String nome, String email, String nascimento, 
+                   String cidade, String telefone, String endereco) {
+        
         this.password = password;
         this.nome = nome;
         this.email = email;
         this.nascimento = nascimento;
         this.cidade = cidade;
         this.telefone = telefone;
+        this.endereco = endereco;
+        postagens = new LinkedList();
+        arquivos = new LinkedList();
     }
 
     @Override
@@ -98,6 +103,30 @@ public class Usuario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public List<String> getPostagens() {
+        return postagens;
+    }
+
+    public void setPostagens(List<String> postagens) {
+        this.postagens = postagens;
+    }
+
+    public List<File> getArquivos() {
+        return arquivos;
+    }
+
+    public void setArquivos(List<File> arquivos) {
+        this.arquivos = arquivos;
     }
 
 }
