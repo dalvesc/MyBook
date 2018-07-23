@@ -5,7 +5,8 @@ import java.util.Iterator;
 /**
  *
  * @author Daniel Alves e Gabriela Nunes. Adaptado da interface IGraph do professor
- * João Batista.
+ * João Batista e do livro "Data Structures and Algorithms in Java (6th ed.)" 
+ * dos autores Goodrich, Tamassia & Goldwasser.
  */
 public interface IGraph {
     
@@ -74,6 +75,11 @@ public interface IGraph {
      */
     public Iterator itrAdjacencies(Object o);
 
+    /**
+     * Retorna um iterador que percorre todos os vértices.
+     * 
+     * @return iterador para percorrer todos os vértices.
+     */
     public Iterator itrVertices();
 
 }
