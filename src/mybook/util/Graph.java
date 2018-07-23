@@ -91,22 +91,16 @@ public class Graph implements IGraph{
     }
        
     @Override
-    public Iterator itrAdjacencies(Object o) {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Iterator itrAdjacencies(Object o) {        
+        if(vertices.containsKey(o)){ 
+            Vertex v = vertices.get(o);
+            return v.adjacencies.iterator();
+        }
+        return null;  
     }
 
     @Override
     public Iterator itrVertices() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return vertices.keySet().iterator();        
     }
 }
