@@ -6,14 +6,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class Usuario {
-
+    
     private String password, nome, email, nascimento, cidade, telefone, endereco;
     private List<String> postagens; 
     private List<File> arquivos;
-    //foto - ???
-    //amigos - arestas
-    //postagens - lista?
-    //arquivos - lista?
+    private String fotoPerfil;       
 
     public Usuario(String password, String nome, String email, String nascimento, 
                    String cidade, String telefone, String endereco) {
@@ -128,5 +125,12 @@ public class Usuario {
     public void setArquivos(List<File> arquivos) {
         this.arquivos = arquivos;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "nome = " + nome + ", email = " + email + '}';
+    }
+    
+    
 
 }

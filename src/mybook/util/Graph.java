@@ -20,7 +20,7 @@ public class Graph implements IGraph{
         }
     } 
     
-    private Graph(){
+    public Graph(){
         vertices = new HashMap();
     }
     
@@ -102,5 +102,9 @@ public class Graph implements IGraph{
     @Override
     public Iterator itrVertices() {
         return vertices.keySet().iterator();        
+    }
+    
+    public boolean contains(Object o){
+        return vertices.containsKey(o);
     }
 }
