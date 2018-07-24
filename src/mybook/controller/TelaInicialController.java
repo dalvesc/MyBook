@@ -8,15 +8,15 @@ import javafx.scene.control.TableView;
 public class TelaInicialController{
 
     @FXML
-    private Label busca;
+    private Label busca; //botão
 
     @FXML
-    private Button arquivos;
+    private Button arquivos;//ir para tela de arquivos
 
     @FXML
     private TableView<?> publicacoes;
 
     @FXML
-    private Button perfil;
+    private Button perfil;//ir para tela de perfil
 
 }

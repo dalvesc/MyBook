@@ -9,6 +9,8 @@ import mybook.exception.*;
 
 public class Controller {    
    
+    //falta colocar para ler os arquivos com os usuários já cadastrados
+    
     private Graph grafo;
     private Iterator<Usuario> itr;
     

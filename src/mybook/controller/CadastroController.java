@@ -59,26 +59,28 @@ public class CadastroController implements Initializable {
         Cadastrarbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                boolean passou = true;
                 try {
                     controller.cadastrarUsuario(password1, nome1, email1, nascimento1, cidade1, telefone1, endereco1);
                 } catch (CadastroInvalido ex) {
-                    Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
+                    passou = false;
+                    System.out.println(ex.getLocalizedMessage());
                 }
-                
-                Stage stage = new Stage();
-                Parent root = null;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("/mybook/view/Login.fxml"));
-                } catch (IOException ex) {
-                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Scene scene = new Scene(root);
+                if (passou == true) {
+                    Stage stage = new Stage();
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("/mybook/view/Login.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(root);
 
-                stage.setScene(scene);
-                stage.show();
-                stage.setTitle("Login");
-                Cadastrarbutton.getScene().getWindow().hide();
+                    stage.setScene(scene);
+                    stage.show();
+                    stage.setTitle("Login");
+                    Cadastrarbutton.getScene().getWindow().hide();
+                }
             }
         });
     }
