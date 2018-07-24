@@ -103,4 +103,8 @@ public class Graph implements IGraph{
     public Iterator itrVertices() {
         return vertices.keySet().iterator();        
     }
+    
+    public boolean contains(Object o){
+        return vertices.containsKey(o);
+}
 }

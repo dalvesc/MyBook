@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="360.0" prefWidth="528.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mybook.controller.CadastroController">
     <children>
-        <Button fx:id="button" layoutX="217.0" layoutY="299.0" onAction="#handleButtonAction" text="Cadastre-se">
+        <Button fx:id="Cadastrarbutton" layoutX="217.0" layoutY="299.0" onAction="#handleButtonAction" text="Cadastre-se">
          <font>
             <Font size="14.0" />
          </font></Button>

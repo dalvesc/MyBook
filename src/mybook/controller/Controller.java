@@ -1,92 +1,75 @@
 package mybook.controller;
 
-import java.io.File;
-import java.io.FileReader;
-import java.util.List;
-import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import mybook.model.Usuario;
 import mybook.util.Graph;
-import mybook.util.IGraph;
+import mybook.exception.*;
 
-/**
- * Classe que controla as interações entre a View e o restante do sistema.
- */
-public class Controller {
-
-    IGraph grafo;
-
-    /**
-     * Contrutor da classe
-     */
-    public Controller() {
+public class Controller {    
+   
+    private Graph grafo;
+    private Iterator<Usuario> itr;
+    
+    public Controller(){        
         grafo = new Graph();
     }
-
-    /**
-     * Adiciona usuário no grafo
-     *
-     * @param usuario usuário que irá ser cadastrado
-     * @return true caso o usuário tenha sido cadastrado
-     */
-    public boolean adicionarUsuario(Object usuario) {
-        return grafo.addVertex(usuario);
-    }
-
-    /**
-     * Adiciona ligações de amizade entre os usuários
-     *
-     * @param u1 usuário 1
-     * @param u2 usuário 2
-     * @return true caso tenha sido criado a relação
-     */
-    public boolean adicionarAmigo(Object u1, Object u2) {
-        return grafo.addEdge(u1, u2);
-    }
-
-    /**
-     * Remover relação de amizade
-     *
-     * @param u1 usuário 1
-     * @param u2 usuário 2
-     * @return true caso tenha sido removida a relação
-     */
-    public boolean removerAmigo(Object u1, Object u2) {
-        return grafo.removeEdge(u1, u2);
-    }
-
-    /**
-     * Ler o arquivo de texto com os usuários salvos e salva eles no programa
-     * para poderem ser utilizados
-     *
-     */
-    public void reader() {
-        Usuario usuario;
-
-        try {
-            File arq = new File("usuáriosCadastrados.txt");
-            String password, nome, email, nascimento, cidade, telefone, endereco;
-            List<String> postagens;
-            List<File> arquivos;
-
-            Scanner scan = new Scanner(new FileReader(arq)).useDelimiter(" |\n");
-
-            while (scan.hasNext()) {
-                nome = scan.next();
-                email = scan.next();
-                password = scan.next();
-                nascimento = scan.next();
-                cidade = scan.next();
-                telefone = scan.next();
-                endereco = scan.next();
-
-                usuario = new Usuario(nome, email, password, nascimento,
-                        cidade, telefone, endereco);
-                //falta postagens e arquivos
-                adicionarUsuario(usuario);
-            }
-            scan.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    
+    public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento, 
+                   String cidade, String telefone, String endereco) throws CadastroInvalido{
+        
+        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone, endereco); 
+        
+        if(grafo.addVertex(u)){
+            return u;
         }
+        
+        throw new CadastroInvalido(email); 
     }
+    
+    public boolean removerConta(String email){
+        itr = grafo.itrVertices();
+        
+        while(itr.hasNext()){
+            Usuario aux = itr.next();
+            if(email.equals(aux)){
+                return grafo.removeVertex(aux);
+            }
+        }
+        return false;
+    }
+    
+    public void fazerAmizade(String u1, String u2){
+        
+        
+        
+        grafo.addEdge(u1, u2);
+    }
+    
+    public void removerAmizade(Usuario u1, Usuario u2){     
+        grafo.removeEdge(u1, u2);
+    }
+    
+    public Usuario fazerLogin(String email, String senha) throws LoginInvalido{
+        itr = grafo.itrVertices();
+        
+        while(itr.hasNext()){
+            Usuario u = itr.next();
+            if(u.getEmail().equals(email) && u.getPassword().equals(senha)){
+                return u;
+            }            
+        }
+        throw new LoginInvalido(); 
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
