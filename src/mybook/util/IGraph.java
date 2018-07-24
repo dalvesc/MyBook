@@ -81,5 +81,13 @@ public interface IGraph {
      * @return iterador para percorrer todos os vértices.
      */
     public Iterator itrVertices();
+    
+    /**
+     * Verifica se o grafo contém um determinado objeto.
+     * 
+     * @param o objeto a ser consultado.
+     * @return "true" se o grafo contém o objeto e "false" se não.
+     */
+    public boolean contains(Object o);
 
 }

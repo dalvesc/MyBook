@@ -1,11 +1,12 @@
 package mybook.model;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Usuario {
+public class Usuario implements Serializable{
     
     private String password, nome, email, nascimento, cidade, telefone, endereco;
     private List<String> postagens; 
