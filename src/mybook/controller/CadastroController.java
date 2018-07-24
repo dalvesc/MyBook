@@ -1,11 +1,14 @@
 package mybook.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class CadastroController {
+public class CadastroController implements Initializable {
 
     @FXML
     private Button button;
@@ -36,4 +39,8 @@ public class CadastroController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
 }

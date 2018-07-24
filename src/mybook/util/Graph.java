@@ -20,7 +20,7 @@ public class Graph implements IGraph{
         }
     } 
     
-    private Graph(){
+    public Graph(){
         vertices = new HashMap();
     }
     

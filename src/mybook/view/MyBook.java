@@ -18,8 +18,7 @@ public class MyBook extends Application {
         Parent cadastro = FXMLLoader.load(getClass().getResource("Cadastro.fxml"));
         Parent entrar = FXMLLoader.load(getClass().getResource("Entrar.fxml"));
 
-        Scene scene = new Scene(cadastro);
-
+        Scene scene = new Scene(entrar);
         stage.setScene(scene);
         stage.show();
 
