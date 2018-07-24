@@ -63,13 +63,24 @@ public class Controller {
         throw new LoginInvalido(); 
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    public boolean cadastrado(String email, String senha){
+    itr = grafo.itrVertices();
+        
+        while(itr.hasNext()){
+            Usuario u = itr.next();
+            if(u.getEmail().equals(email) && u.getPassword().equals(senha)){
+                return true;
+            }            
+        }
+        return false;
+    }
 }
+    
+    
+    
+    
+    
+    
+    
+    
+

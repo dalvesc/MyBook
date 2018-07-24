@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 
+    Controller controller = new Controller();
     @FXML
     private Button cadastrarButton;
     @FXML
@@ -37,7 +38,7 @@ public class LoginController implements Initializable {
         entrarButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (Email.getText().equals("teste") && Password.getText().equals("test")) {
+                if (controller.cadastrado(Email.getText(), Password.getText())) {
                     Stage stage = new Stage();
                     Parent root = null;
 
@@ -51,7 +52,7 @@ public class LoginController implements Initializable {
 
                     stage.setScene(scene);
                     stage.show();
-                    stage.setTitle("Login");
+                    stage.setTitle("Tela Inicial");
                     entrarButton.getScene().getWindow().hide();
                 }
             }

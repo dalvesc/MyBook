@@ -1,11 +1,21 @@
 package mybook.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import mybook.exception.CadastroInvalido;
 import mybook.model.Usuario;
 
 public class CadastroController implements Initializable {
@@ -36,7 +46,6 @@ public class CadastroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        Usuario usuario1;
         String u = usuario.getText();
         String password1 = password.getText();
         String nome1 = nome.getText();
@@ -45,9 +54,36 @@ public class CadastroController implements Initializable {
         String cidade1 = cidade.getText();
         String telefone1 = telefone.getText();
         String endereco1 = endereco.getText();
-        usuario1 = new Usuario(password1, nome1, email1, nascimento1,
-                cidade1, telefone1, endereco1);
-        
+
+        Controller controller = new Controller();
+
+        Cadastrarbutton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                try {
+                    controller.cadastrarUsuario(password1, nome1, email1, nascimento1, cidade1, telefone1, endereco1);
+                } catch (CadastroInvalido ex) {
+                    Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                Stage stage = new Stage();
+                Parent root = null;
+
+                try {
+                    root = FXMLLoader.load(getClass().getResource("/mybook.view/Login.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                Scene scene = new Scene(root);
+
+                stage.setScene(scene);
+                stage.show();
+                stage.setTitle("Login");
+                Cadastrarbutton.getScene().getWindow().hide();
+            }
+        });
     }
 
 }
