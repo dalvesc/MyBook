@@ -16,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mybook.exception.CadastroInvalido;
-import mybook.model.Usuario;
 
 public class CadastroController implements Initializable {
 
@@ -69,13 +68,11 @@ public class CadastroController implements Initializable {
                 
                 Stage stage = new Stage();
                 Parent root = null;
-
                 try {
-                    root = FXMLLoader.load(getClass().getResource("/mybook.view/Login.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("/mybook/view/Login.fxml"));
                 } catch (IOException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
                 Scene scene = new Scene(root);
 
                 stage.setScene(scene);

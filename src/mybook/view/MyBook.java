@@ -20,6 +20,7 @@ public class MyBook extends Application {
         Scene scene = new Scene(entrar);
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("Login");
 
     }
 

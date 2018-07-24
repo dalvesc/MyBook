@@ -43,7 +43,7 @@ public class LoginController implements Initializable {
                     Parent root = null;
 
                     try {
-                        root = FXMLLoader.load(getClass().getResource("/mybook.view/TelaInicial.fxml"));
+                        root = FXMLLoader.load(getClass().getResource("/mybook/view/TelaInicial.fxml"));
                     } catch (IOException ex) {
                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -66,7 +66,7 @@ public class LoginController implements Initializable {
                 Parent root = null;
 
                 try {
-                    root = FXMLLoader.load(getClass().getResource("/mybook.view/Cadastro.fxml"));
+                    root = FXMLLoader.load(getClass().getResource("/mybook/view/Cadastro.fxml"));
                 } catch (IOException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
