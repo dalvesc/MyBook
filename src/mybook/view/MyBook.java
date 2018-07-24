@@ -15,8 +15,7 @@ public class MyBook extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent cadastro = FXMLLoader.load(getClass().getResource("Cadastro.fxml"));
-        Parent entrar = FXMLLoader.load(getClass().getResource("Entrar.fxml"));
+        Parent entrar = FXMLLoader.load(getClass().getResource("Login.fxml"));
 
         Scene scene = new Scene(entrar);
         stage.setScene(scene);
