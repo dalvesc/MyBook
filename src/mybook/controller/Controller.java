@@ -10,6 +10,7 @@ import mybook.exception.*;
 public class Controller {    
    
     //falta colocar para ler os arquivos com os usuários já cadastrados
+    //classe com as trocas de telas
     
     private Graph grafo;
     private Iterator<Usuario> itr;
@@ -35,7 +36,7 @@ public class Controller {
         
         while(itr.hasNext()){
             Usuario aux = itr.next();
-            if(email.equals(aux)){
+            if(email.equals(aux.getEmail())){
                 return grafo.removeVertex(aux);
             }
         }
@@ -43,9 +44,6 @@ public class Controller {
     }
     
     public void fazerAmizade(String u1, String u2){
-        
-        
-        
         grafo.addEdge(u1, u2);
     }
     
@@ -75,6 +73,15 @@ public class Controller {
             }            
         }
         return false;
+    }
+    
+    public void imprimi(){
+        itr = grafo.itrVertices();
+        
+        while(itr.hasNext()){
+            Usuario u = itr.next();
+            System.out.println(u);           
+        }
     }
 }
     

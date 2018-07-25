@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mybook.exception.CadastroInvalido;
+import mybook.view.MyBook;
 
 public class CadastroController implements Initializable {
 
@@ -37,6 +38,8 @@ public class CadastroController implements Initializable {
     private TextField telefone;
     @FXML
     private TextField endereco;
+    
+    Controller controller = MyBook.getController();
 
     /**
      * Initializes the controller class.
@@ -53,8 +56,6 @@ public class CadastroController implements Initializable {
         String cidade1 = cidade.getText();
         String telefone1 = telefone.getText();
         String endereco1 = endereco.getText();
-
-        Controller controller = new Controller();
 
         Cadastrarbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -80,6 +81,7 @@ public class CadastroController implements Initializable {
                     stage.show();
                     stage.setTitle("Login");
                     Cadastrarbutton.getScene().getWindow().hide();
+                    controller.imprimi();
                 }
             }
         });
