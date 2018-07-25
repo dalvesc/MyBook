@@ -1,20 +1,13 @@
 package mybook.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import mybook.exception.CadastroInvalido;
 import mybook.view.MyBook;
 
@@ -38,7 +31,7 @@ public class CadastroController implements Initializable {
     private TextField telefone;
     @FXML
     private TextField endereco;
-    
+
     Controller controller = MyBook.getController();
 
     /**
@@ -47,7 +40,7 @@ public class CadastroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        PassarTela tela = new PassarTela();
         String u = usuario.getText();
         String password1 = password.getText();
         String nome1 = nome.getText();
@@ -68,20 +61,8 @@ public class CadastroController implements Initializable {
                     System.out.println(ex.getLocalizedMessage());
                 }
                 if (passou == true) {
-                    Stage stage = new Stage();
-                    Parent root = null;
-                    try {
-                        root = FXMLLoader.load(getClass().getResource("/mybook/view/Login.fxml"));
-                    } catch (IOException ex) {
-                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    Scene scene = new Scene(root);
-
-                    stage.setScene(scene);
-                    stage.show();
-                    stage.setTitle("Login");
+                    tela.login();
                     Cadastrarbutton.getScene().getWindow().hide();
-                    controller.imprimi();
                 }
             }
         });
