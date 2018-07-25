@@ -13,6 +13,7 @@ import mybook.view.MyBook;
 
 public class CadastroController implements Initializable {
 
+    //colocar label para caso o email já ter sido cadastrado
     @FXML
     private Button Cadastrarbutton;
     @FXML
@@ -34,9 +35,6 @@ public class CadastroController implements Initializable {
 
     Controller controller = MyBook.getController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

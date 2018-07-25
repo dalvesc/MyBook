@@ -9,10 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import mybook.view.MyBook;
 
 public class LoginController implements Initializable {
 
-    Controller controller = new Controller();
+    //colocar label para login errado
     @FXML
     private Button cadastrarButton;
     @FXML
@@ -22,9 +23,8 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField Password;
 
-    /**
-     * Initializes the controller class.
-     */
+    Controller controller = MyBook.getController();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
