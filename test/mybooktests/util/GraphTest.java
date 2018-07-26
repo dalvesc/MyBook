@@ -16,8 +16,8 @@ public class GraphTest {
     @Before
     public void setUp() throws Exception {
         grafo = new Graph();
-        usuario1 = new Usuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "endereco1");
-        usuario2 = new Usuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "endereco2");
+        usuario1 = new Usuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1");
+        usuario2 = new Usuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2");
 
     }
 

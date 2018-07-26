@@ -17,6 +17,10 @@ public class Controller {
     public Controller() {
         grafo = new Graph();
     }
+    
+    public Graph getGrafo(){
+        return this.grafo;
+    }
 
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
             String cidade, String telefone, String fotoPerfil) throws CadastroInvalido {
@@ -42,7 +46,7 @@ public class Controller {
         return false;
     }
 
-    public void fazerAmizade(String u1, String u2) {
+    public void fazerAmizade(Usuario u1, Usuario u2) {
         grafo.addEdge(u1, u2);
     }
 
