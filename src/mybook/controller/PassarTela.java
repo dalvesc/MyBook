@@ -58,6 +58,55 @@ public class PassarTela {
         stage.show();
         stage.setTitle("Tela Inicial");
     }
-    //tela de busca
-    //pensando em tirar pagina amigo, e usar a tela inicial para os dois
+
+    public void perfil() {
+        Stage stage = new Stage();
+        Parent root = null;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/Pefil.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Perfil");
+    }
+
+    public void arquivos() {
+        Stage stage = new Stage();
+        Parent root = null;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/Arquivos.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Arquivos");
+    }
+
+    public void buscas() {
+        Stage stage = new Stage();
+        Parent root = null;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/Busca.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Busca");
+    }
 }
