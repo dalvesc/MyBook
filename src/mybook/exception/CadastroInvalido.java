@@ -1,13 +1,12 @@
 package mybook.exception;
 
 /**
+ * Caso o email já tenha sido cadastrado
  *
- * @author gabriela
  */
-public class CadastroInvalido extends Exception{ 
-    
-    public CadastroInvalido(String email){
-        super("O e-mail ''" + email + "'' jÃ¡ estÃ¡ em uso!");
+public class CadastroInvalido extends Exception {
+
+    public CadastroInvalido(String email) {
+        super("O e-mail ''" + email + "'' já está em uso!");
     }
-    
 }

@@ -8,8 +8,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Metódos que irão servir para passar de uma tela para outra da interface
+ *
+ */
 public class PassarTela {
 
+    /**
+     * Passa para a tela de login
+     */
     public void login() {
         Stage stage = new Stage();
         Parent root = null;
@@ -25,6 +32,9 @@ public class PassarTela {
         stage.setTitle("Login");
     }
 
+    /**
+     * Passa para a tela de cadastro
+     */
     public void cadastro() {
         Stage stage = new Stage();
         Parent root = null;
@@ -42,6 +52,9 @@ public class PassarTela {
         stage.setTitle("Cadastro");
     }
 
+    /**
+     * Passa para a tela inicial
+     */
     public void telaInicial() {
         Stage stage = new Stage();
         Parent root = null;
@@ -59,6 +72,9 @@ public class PassarTela {
         stage.setTitle("Tela Inicial");
     }
 
+    /**
+     * Passa para a tela de perfil
+     */
     public void perfil() {
         Stage stage = new Stage();
         Parent root = null;
@@ -76,6 +92,9 @@ public class PassarTela {
         stage.setTitle("Perfil");
     }
 
+    /**
+     * Passa para a tela de arquivos
+     */
     public void arquivos() {
         Stage stage = new Stage();
         Parent root = null;
@@ -93,6 +112,9 @@ public class PassarTela {
         stage.setTitle("Arquivos");
     }
 
+    /**
+     * Passa para a tela de buscas
+     */
     public void buscas() {
         Stage stage = new Stage();
         Parent root = null;
