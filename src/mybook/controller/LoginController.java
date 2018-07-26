@@ -47,7 +47,7 @@ public class LoginController implements Initializable {
                     } catch (LoginInvalido ex) {
                         passar = true;
                         loginInvalido.setText("Login Invalido");
-                       // Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 tela.telaInicial();
