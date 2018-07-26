@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import mybook.view.MyBook;
 
 public class TelaInicialController implements Initializable {
 
@@ -27,6 +28,8 @@ public class TelaInicialController implements Initializable {
     @FXML
     private Button sair;
 
+    Controller controller = MyBook.getController();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -38,21 +41,21 @@ public class TelaInicialController implements Initializable {
                 tela.login();
             }
         });
-        
+
         arquivos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 tela.arquivos();
             }
         });
-        
+
         perfil.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 tela.perfil();
             }
         });
-        
+
         buscar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

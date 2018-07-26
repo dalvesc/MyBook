@@ -8,20 +8,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import mybook.view.MyBook;
 
-public class ArquivosController implements Initializable{
+public class ArquivosController implements Initializable {
 
     @FXML
     private Button voltar;
 
     @FXML
     private TableColumn<?, ?> arquivos;
-    
+
+    Controller controller = MyBook.getController();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         PassarTela tela = new PassarTela();
         voltar.setOnAction(new EventHandler<ActionEvent>() {
-            
+
             @Override
             public void handle(ActionEvent event) {
                 tela.telaInicial();
@@ -30,4 +33,3 @@ public class ArquivosController implements Initializable{
     }
 
 }
-

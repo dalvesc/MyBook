@@ -32,7 +32,7 @@ public class Usuario {
         hash = 71 * hash + Objects.hashCode(this.email);
         return hash;
     }
-
+  
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

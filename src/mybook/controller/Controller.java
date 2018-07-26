@@ -10,7 +10,7 @@ import mybook.exception.*;
 public class Controller {
 
     //falta colocar para ler os arquivos com os usuários já cadastrados
-    //aumentar as telas e colocar outras anchorpanes
+    //não fechar algumas telas quando abrir uma nova(perfil, arquivos...)
     private Graph grafo;
     private Iterator<Usuario> itr;
 

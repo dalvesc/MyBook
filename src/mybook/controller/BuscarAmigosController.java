@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import mybook.view.MyBook;
 
-public class  BuscarAmigosController implements Initializable {
+public class BuscarAmigosController implements Initializable {
 
     @FXML
     private Button voltar;
@@ -26,13 +26,12 @@ public class  BuscarAmigosController implements Initializable {
     @FXML
     private TextField busca;
 
-    
     Controller controller = MyBook.getController();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         PassarTela tela = new PassarTela();
-        
+
         voltar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
