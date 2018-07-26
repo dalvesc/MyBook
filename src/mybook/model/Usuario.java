@@ -7,13 +7,13 @@ import java.util.Objects;
 
 public class Usuario {
 
-    private String password, nome, email, nascimento, cidade, telefone, endereco;
+    private String password, nome, email, nascimento, cidade, telefone;
     private List<String> postagens;
     private List<File> arquivos;
-    private String fotoPerfil;       
+    private String fotoPerfil;
 
     public Usuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone, String endereco) {
+            String cidade, String telefone, String fotoPerfil) {
 
         this.password = password;
         this.nome = nome;
@@ -21,7 +21,7 @@ public class Usuario {
         this.nascimento = nascimento;
         this.cidade = cidade;
         this.telefone = telefone;
-        this.endereco = endereco;
+        this.fotoPerfil = fotoPerfil;
         postagens = new LinkedList();
         arquivos = new LinkedList();
     }
@@ -102,14 +102,6 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public List<String> getPostagens() {
         return postagens;
     }
@@ -126,11 +118,17 @@ public class Usuario {
         this.arquivos = arquivos;
     }
 
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" + "nome = " + nome + ", email = " + email + '}';
-}
-    
-    
+    }
 
 }

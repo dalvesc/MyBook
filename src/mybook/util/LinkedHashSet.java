@@ -1,6 +1,5 @@
 package mybook.util;
 
-
 public class LinkedHashSet implements IHashSet {
 
     private int tamanho;
@@ -133,7 +132,7 @@ public class LinkedHashSet implements IHashSet {
         }
     }
 
-    //Teste dos metodos
+    //teste da classe
 //    public static void main(String[] args) {
 //
 //        LinkedHashSet hash = new LinkedHashSet();

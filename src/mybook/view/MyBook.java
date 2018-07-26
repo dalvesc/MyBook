@@ -15,7 +15,7 @@ import mybook.controller.Controller;
 public class MyBook extends Application {
 
     static Controller controller = new Controller();
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent entrar = FXMLLoader.load(getClass().getResource("Login.fxml"));
@@ -26,8 +26,13 @@ public class MyBook extends Application {
         stage.setTitle("Login");
 
     }
-    
-    static public Controller getController(){
+
+    /**
+     * Retorna o controller que será utilizado durante a execução do programa
+     *
+     * @return controller criado
+     */
+    static public Controller getController() {
         return MyBook.controller;
     }
 
