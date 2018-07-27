@@ -1,28 +1,40 @@
 package mybook.view;
 
+import java.io.IOException;
 import mybook.controller.*;
 import mybook.exception.*;
+import mybook.facade.Facade;
 import mybook.model.Usuario;
 
 public class TesteMain {
-    public static void main(String[] args) throws CadastroInvalido, LoginInvalido{
+    public static void main(String[] args) throws CadastroInvalido, LoginInvalido, IOException{
         
-        Controller controller = new Controller();
+        Facade fcd = new Facade();
         
-        System.out.println("Cadastro: " + controller.cadastrarUsuario("1234", "Gabriela Nunes", "hehe123@gmail.com", "23/09/1999", 
-                   "Feira de Santana", "(75)99294-5418", "Rua C, número 07, Conjunto Feira IX"));
+        //Criando
+        //true
+        System.out.println("Cadastro: " + fcd.cadastrarUsuario("1234", "Gabriela Nunes", "hehe123@gmail.com", "23/09/1999", 
+            "Feira de Santana", "(75)99294-5418", "Rua C, número 07, Conjunto Feira IX"));
         
-//        System.out.println(controller.cadastrarUsuario("1234", "Gabriela Nunes", "hehe123@gmail.com", "23/09/1999", 
-//                   "Feira de Santana", "(75)99294-5418", "Rua C, número 07, Conjunto Feira IX"));
         
-        System.out.println("Cadastro: " + controller.cadastrarUsuario("1234", "Gabriela Nunes", "hehe12345@gmail.com", "23/09/1999", 
-                   "Feira de Santana", "(75)99294-5418", "Rua C, número 07, Conjunto Feira IX"));
-                  
-        System.out.println("Login: " + controller.fazerLogin("hehe123@gmail.com", "1234"));
+        //true
+        System.out.println("Cadastro: " + fcd.cadastrarUsuario("1234", "Gabriela Nunes", "h@gmail.com", "23/09/1999", 
+            "Feira de Santana", "(75)99294-5418", "Rua C, número 07, Conjunto Feira IX"));        
         
-        System.out.println("Login: " + controller.fazerLogin("hehe123@gmail.com", "12"));
         
-        System.out.println("Login: " + controller.fazerLogin("hehe123@gmail", "1234"));
+        //true
+        System.out.println("Cadastro: " + fcd.cadastrarUsuario("666", "Osvaldo Neto", "666@gmail.com", "13/10/1976", 
+                   "Salvador", "(71)6666-6666", "Rua H, número 14"));
+        
+        //Login                  
+        System.out.println("Login: " + fcd.fazerLogin("hehe123@gmail.com", "1234"));
+        
+        System.out.println("Login: " + fcd.fazerLogin("666@gmail.com", "666"));
+
+        System.out.println("Obter usuário: " + fcd.obterUsuario("666@gmail.com"));        
+        
+        
+        
         
     }
 }

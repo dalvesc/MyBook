@@ -60,9 +60,6 @@ public class Usuario {
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }

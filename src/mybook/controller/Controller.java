@@ -1,7 +1,10 @@
 package mybook.controller;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import mybook.model.Usuario;
 import mybook.util.Graph;
@@ -18,6 +21,7 @@ public class Controller {
     //metodo para buscar pessoas, para abrir tela de uma pessoa especifica
     private Graph grafo;
     private Iterator<Usuario> itr;
+    private Usuario userLogado;
 
     /**
      * Construtor da classe
@@ -35,7 +39,7 @@ public class Controller {
     }
 
     /**
-     * Cadastra um usuário no programa
+     * Cadastra um usuário no programa.
      *
      * @param password senha do usuário
      * @param nome nome do usuário
@@ -45,7 +49,7 @@ public class Controller {
      * @param telefone telefone do usuário
      * @param fotoPerfil foto do usuário
      * @return usuário que foi cadastrado
-     * @throws CadastroInvalido caso o email já tenha sido cadastrado
+     * @throws CadastroInvalido caso o email já tenha sido cadastrado.
      */
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
             String cidade, String telefone, String fotoPerfil) throws CadastroInvalido {
@@ -62,39 +66,44 @@ public class Controller {
     /**
      * Remove uma conta do programa
      *
-     * @param email email do usuário que irá ser removido
-     * @return true caso o usuário tenha sido removido e false caso não
+     * @return "true" caso o usuário tenha sido removido e "false" caso não.
      */
-    public boolean removerConta(String email) {
-        itr = grafo.itrVertices();
+    public boolean removerConta() {
+        return grafo.removeVertex(userLogado);   
+    }
 
+    /**
+     * Cria uma relação de amizade(aresta) entre dois usuários.
+     *
+     * @param outroUser     
+     * @return "true" se a operação for bem sucedida e "false" se não.
+     */
+    public boolean fazerAmizade(String outroUser) {
+        
         while (itr.hasNext()) {
             Usuario aux = itr.next();
-            if (email.equals(aux.getEmail())) {
-                return grafo.removeVertex(aux);
+            if (outroUser.equals(aux.getNome())) {
+                return grafo.addEdge(userLogado, aux);                                
             }
         }
         return false;
     }
 
     /**
-     * Cria uma relação de amizade(aresta) entre dois usuários
+     * Remove uma relação de amizade(aresta) entre dois usuários.
      *
-     * @param u1 usuário 1
-     * @param u2 usuário 2
+     * @param outroUser
+     * @return "true" se a operação for bem sucedida e "false" se não.
      */
-    public void fazerAmizade(Usuario u1, Usuario u2) {
-        grafo.addEdge(u1, u2);
-    }
-
-    /**
-     * Remove uma relação de amizade(aresta) entre dois usuários
-     *
-     * @param u1 usuário 1
-     * @param u2 usuário 2
-     */
-    public void removerAmizade(Usuario u1, Usuario u2) {
-        grafo.removeEdge(u1, u2);
+    public boolean removerAmizade(String outroUser) {
+        
+        while (itr.hasNext()) {
+            Usuario aux = itr.next();
+            if (outroUser.equals(aux.getNome())) {
+                return grafo.removeEdge(userLogado, aux);                                
+            }
+        }
+        return false;
     }
 
     /**
@@ -105,13 +114,14 @@ public class Controller {
      * @return usuário que está fazendo login
      * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
      */
-    public Usuario fazerLogin(String email, String senha) throws LoginInvalido {
+    public boolean fazerLogin(String email, String senha) throws LoginInvalido {
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
             Usuario u = itr.next();
             if (u.getEmail().equals(email) && u.getPassword().equals(senha)) {
-                return u;
+                userLogado = u;
+                return true;
             }
         }
         throw new LoginInvalido();
@@ -125,5 +135,60 @@ public class Controller {
             Usuario u = itr.next();
             System.out.println(u);
         }
+    }
+    
+    /**
+     * Faz uma busca por usuários pelo nome.
+     * 
+     * @param nomeUser nome a ser buscado.
+     * @return lista com todos os usuarios que possuem esse nome.
+     * @throws mybook.exception.SemResultados caso não existam resultados para a busca.
+     */
+    public List buscarUsuario(String nomeUser) throws SemResultados{
+        
+        List <Usuario> usuariosBuscados = new LinkedList();
+        
+        itr = grafo.itrVertices();
+        
+        while(itr.hasNext()){
+            Usuario u = itr.next();            
+            if(u.getNome().equals(nomeUser)){
+               usuariosBuscados.add(u);
+            }             
+        }
+        
+        if(!usuariosBuscados.isEmpty()){
+            return usuariosBuscados;
+        }
+        throw new SemResultados(nomeUser); 
+    }
+    
+    /**
+     * Adiciona à lista de postagens do usuário uma nova postagem.
+     * 
+     * @param mensagem mensagem a ser postada.
+     * @return "true" se a operação for bem sucedida e "false" se não.
+     */
+    public boolean fazerPostagem(String mensagem){        
+        return userLogado.getPostagens().add(mensagem);
+    }
+    
+    /**
+     * Adiciona à lista de arquivos do usuário um novo arquivo.
+     * 
+     * @param caminhoArquivo caminho do arquivo.
+     * @return "true" se a operação for bem sucedida e "false" se não.
+     */
+    public boolean uploadArquivo(String caminhoArquivo){        
+        return userLogado.getArquivos().add(new File(caminhoArquivo));  
+    }
+    
+    public Usuario obterUsuario(String email){
+        
+        itr = grafo.itrVertices();
+        
+        Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx", "xx");
+        
+        return (Usuario)grafo.getVertex(aux);
     }
 }
