@@ -7,69 +7,123 @@ import mybook.model.Usuario;
 import mybook.util.Graph;
 import mybook.exception.*;
 
-public class Controller {    
-   
+/**
+ * Classe que controla as interações entre a View e o restante do sistema.
+ *
+ */
+public class Controller {
+
+    //falta colocar para ler os arquivos com os usuários já cadastrados
+    //não fechar algumas telas quando abrir uma nova(perfil, arquivos...)
+    //metodo para buscar pessoas, para abrir tela de uma pessoa especifica
     private Graph grafo;
     private Iterator<Usuario> itr;
-    
-    public Controller(){        
+
+    /**
+     * Construtor da classe
+     */
+    public Controller() {
         grafo = new Graph();
     }
-    
-    public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento, 
-                   String cidade, String telefone, String endereco) throws CadastroInvalido{
-        
-        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone, endereco); 
-        
-        if(grafo.addVertex(u)){
+
+    /**
+     *
+     * @return grafo em que os dados são armazenados
+     */
+    public Graph getGrafo() {
+        return this.grafo;
+    }
+
+    /**
+     * Cadastra um usuário no programa
+     *
+     * @param password senha do usuário
+     * @param nome nome do usuário
+     * @param email email do usuário
+     * @param nascimento data de nascimento do usuário
+     * @param cidade cidade do usuário
+     * @param telefone telefone do usuário
+     * @param fotoPerfil foto do usuário
+     * @return usuário que foi cadastrado
+     * @throws CadastroInvalido caso o email já tenha sido cadastrado
+     */
+    public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
+            String cidade, String telefone, String fotoPerfil) throws CadastroInvalido {
+
+        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
+
+        if (grafo.addVertex(u)) {
             return u;
         }
-        
-        throw new CadastroInvalido(email); 
+
+        throw new CadastroInvalido(email);
     }
-    
-    public boolean removerConta(String email){
+
+    /**
+     * Remove uma conta do programa
+     *
+     * @param email email do usuário que irá ser removido
+     * @return true caso o usuário tenha sido removido e false caso não
+     */
+    public boolean removerConta(String email) {
         itr = grafo.itrVertices();
-        
-        while(itr.hasNext()){
+
+        while (itr.hasNext()) {
             Usuario aux = itr.next();
-            if(email.equals(aux)){
+            if (email.equals(aux.getEmail())) {
                 return grafo.removeVertex(aux);
             }
         }
         return false;
     }
-    
-    public void fazerAmizade(String u1, String u2){
-        
-        
-        
+
+    /**
+     * Cria uma relação de amizade(aresta) entre dois usuários
+     *
+     * @param u1 usuário 1
+     * @param u2 usuário 2
+     */
+    public void fazerAmizade(Usuario u1, Usuario u2) {
         grafo.addEdge(u1, u2);
     }
-    
-    public void removerAmizade(Usuario u1, Usuario u2){     
+
+    /**
+     * Remove uma relação de amizade(aresta) entre dois usuários
+     *
+     * @param u1 usuário 1
+     * @param u2 usuário 2
+     */
+    public void removerAmizade(Usuario u1, Usuario u2) {
         grafo.removeEdge(u1, u2);
     }
-    
-    public Usuario fazerLogin(String email, String senha) throws LoginInvalido{
+
+    /**
+     * Faz o login do usuário no progrma
+     *
+     * @param email email de usuário
+     * @param senha senha do usuário
+     * @return usuário que está fazendo login
+     * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
+     */
+    public Usuario fazerLogin(String email, String senha) throws LoginInvalido {
         itr = grafo.itrVertices();
-        
-        while(itr.hasNext()){
+
+        while (itr.hasNext()) {
             Usuario u = itr.next();
-            if(u.getEmail().equals(email) && u.getPassword().equals(senha)){
+            if (u.getEmail().equals(email) && u.getPassword().equals(senha)) {
                 return u;
-            }            
+            }
         }
-        throw new LoginInvalido(); 
+        throw new LoginInvalido();
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    //depois apagar
+    public void imprimi() {
+        itr = grafo.itrVertices();
+
+        while (itr.hasNext()) {
+            Usuario u = itr.next();
+            System.out.println(u);
+        }
+    }
 }

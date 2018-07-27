@@ -10,19 +10,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import mybook.controller.Controller;
 
 public class MyBook extends Application {
 
+    static Controller controller = new Controller();
+
     @Override
     public void start(Stage stage) throws Exception {
-        Parent cadastro = FXMLLoader.load(getClass().getResource("Cadastro.fxml"));
-        Parent entrar = FXMLLoader.load(getClass().getResource("Entrar.fxml"));
+        Parent entrar = FXMLLoader.load(getClass().getResource("Login.fxml"));
 
-        Scene scene = new Scene(cadastro);
-
+        Scene scene = new Scene(entrar);
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("Login");
 
+    }
+
+    /**
+     * Retorna o controller que será utilizado durante a execução do programa
+     *
+     * @return controller criado
+     */
+    static public Controller getController() {
+        return MyBook.controller;
     }
 
     /**
