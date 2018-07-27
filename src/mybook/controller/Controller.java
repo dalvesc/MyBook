@@ -17,12 +17,9 @@ import mybook.exception.*;
 public class Controller {
 
     //falta colocar para ler os arquivos com os usuários já cadastrados
-    //metodo para buscar pessoas, para abrir tela de uma pessoa especifica
-    //pensando em criar classe para as publicações
-    //metodo para adicionar um cometario
-    //lista de amigos no perfil
-    //adicionar amigo - criar tela???
+    //metodo para adicionar um cometario/publicação no amigo
     //facade
+    //botão remover amizade
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario userLogado;
