@@ -7,26 +7,28 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ListView;
 import mybook.view.MyBook;
 
 public class TelaInicialController implements Initializable {
 
     @FXML
-    private Button arquivos;//ir para tela de arquivos
+    private Button arquivos;
 
     @FXML
-    private TableView<?> publicacoes;
+    private ListView<?> publicacoes;
 
     @FXML
-    private Button perfil;//ir para tela de perfil
+    private Button perfil;
 
     @FXML
-    private TextField buscar;//botão?
+    private Button buscar;
 
     @FXML
     private Button sair;
+    
+    @FXML
+    private Button adicionarPublicacao;
 
     Controller controller = MyBook.getController();
 
@@ -39,6 +41,8 @@ public class TelaInicialController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 tela.login();
+                sair.getScene().getWindow().hide();
+                controller.setConta(null);
             }
         });
 
@@ -60,6 +64,14 @@ public class TelaInicialController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 tela.perfil();
+                buscar.getScene().getWindow().hide();
+            }
+        });
+        
+        adicionarPublicacao.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                tela.adicionarPublicacao();
             }
         });
     }

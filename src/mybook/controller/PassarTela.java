@@ -46,7 +46,7 @@ public class PassarTela {
         }
 
         Scene scene = new Scene(root);
-
+       
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Cadastro");
@@ -60,7 +60,7 @@ public class PassarTela {
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/mybook/view/TelaInicial.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/Inicio.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +80,7 @@ public class PassarTela {
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/mybook/view/Pefil.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/Perfil.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -120,7 +120,7 @@ public class PassarTela {
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/mybook/view/Busca.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/BuscarAmigos.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -130,5 +130,25 @@ public class PassarTela {
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Busca");
+    }
+    
+    /**
+     * Passa para a tela de adicionar uma publicação
+     */
+    public void adicionarPublicacao() {
+        Stage stage = new Stage();
+        Parent root = null;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/AdicionarPublicacao.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Adicionar Publicacao");
     }
 }

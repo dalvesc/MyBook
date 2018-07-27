@@ -14,10 +14,12 @@ import mybook.exception.*;
 public class Controller {
 
     //falta colocar para ler os arquivos com os usuários já cadastrados
-    //não fechar algumas telas quando abrir uma nova(perfil, arquivos...)
     //metodo para buscar pessoas, para abrir tela de uma pessoa especifica
+    //pensando em criar classe para as publicações
+    //metodo para adicionar um cometario
     private Graph grafo;
     private Iterator<Usuario> itr;
+    private Usuario conta;
 
     /**
      * Construtor da classe
@@ -51,7 +53,6 @@ public class Controller {
             String cidade, String telefone, String fotoPerfil) throws CadastroInvalido {
 
         Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
-
         if (grafo.addVertex(u)) {
             return u;
         }
@@ -125,5 +126,13 @@ public class Controller {
             Usuario u = itr.next();
             System.out.println(u);
         }
+    }
+    
+    public void setConta(Usuario u){
+        this.conta = u;
+    }
+    
+    public Usuario getConta(){
+        return this.conta;
     }
 }

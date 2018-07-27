@@ -41,26 +41,17 @@ public class CadastroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         PassarTela tela = new PassarTela();
-        String password1 = password.getText();
-        String nome1 = nome.getText();
-        String email1 = email.getText();
-        String nascimento1 = nascimento.getText();
-        String cidade1 = cidade.getText();
-        String telefone1 = telefone.getText();
-        String fotoPerfil1 = fotoPerfil.getText();
 
         Cadastrarbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                boolean passou = true;
-                while (passou) {
-                    try {
-                        controller.cadastrarUsuario(password1, nome1, email1, nascimento1, cidade1, telefone1, fotoPerfil1);
-                        passou = false;
-                    } catch (CadastroInvalido ex) {
-                        passou = true;
-                        jaCadastrado.setText("Email já cadastrado");
-                    }
+
+                try {
+                    controller.cadastrarUsuario(password.getText(),
+                            nome.getText(), email.getText(), nascimento.getText(),
+                            cidade.getText(), telefone.getText(), fotoPerfil.getText());
+                } catch (CadastroInvalido ex) {
+                    jaCadastrado.setText("Email já cadastrado");
                 }
                 tela.login();
                 Cadastrarbutton.getScene().getWindow().hide();
