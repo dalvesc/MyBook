@@ -17,8 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import mybook.exception.SemResultados;
-import mybook.model.Usuario;
-import mybook.view.MyBook;
+import mybook.model.*;
+import mybook.view.*;
 
 public class BuscarAmigosController implements Initializable {
 

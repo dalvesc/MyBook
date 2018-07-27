@@ -43,11 +43,11 @@ public class Facade {
         return ctrl.buscarUsuario(nome);
     }
     
-    public boolean fazerPostagem(String mensagem){
+    public boolean fazerPostagem(String mensagem) throws SemPublicacoes{
         return ctrl.fazerPostagem(mensagem);
     }
     
-    public boolean uploadArquivo(String caminhoArquivo){
+    public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos{
         return ctrl.uploadArquivo(caminhoArquivo);
     }
     

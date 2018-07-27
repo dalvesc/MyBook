@@ -21,27 +21,27 @@
          </font>
       </Label>
       <ImageView fx:id="fotoPefil" fitHeight="110.0" fitWidth="119.0" layoutX="14.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="nome" layoutX="173.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="211.99999433755863">
+      <Text fx:id="nome" layoutX="173.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="asdfd" wrappingWidth="232.0000356659292">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text fx:id="email" layoutX="173.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="232.00004011392582">
+      <Text fx:id="email" layoutX="173.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="asfdaf" wrappingWidth="232.00004011392582">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text fx:id="nascimento" layoutX="173.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="98.00005537271488">
+      <Text fx:id="nascimento" layoutX="173.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="asdf" wrappingWidth="232.0000356659292">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text fx:id="cidade" layoutX="171.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.66674365103245">
+      <Text fx:id="cidade" layoutX="173.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="afs" wrappingWidth="232.0000356659292">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text fx:id="telefone" layoutX="171.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.66674238443363">
+      <Text fx:id="telefone" layoutX="173.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sdad" wrappingWidth="232.00002930313337">
          <font>
             <Font size="16.0" />
          </font>

@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mybook.model.Usuario;
+import mybook.model.*;
 
 /**
  * Metódos que irão servir para passar de uma tela para outra da interface
@@ -41,7 +41,7 @@ public class PassarTela {
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/mybook/view/Cadastro.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/Inicio.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,39 +62,18 @@ public class PassarTela {
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/mybook/view/TelaInicial.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/Inicio.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Tela Inicial");
+
     }
 
-//    /**
-//     * Passa para a tela inicial do amigo
-//     */
-//    public void telaInicialAmigo(Usuario u, int i) {
-//
-//        TelaInicialController inicio = TelaInicialController(u, i);
-//        Stage stage = new Stage();
-//        Parent root = null;
-//
-//        try {
-//            root = FXMLLoader.load(getClass().getResource("/mybook/view/TelaInicial.fxml"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        Scene scene = new Scene(root);
-//
-//        stage.setScene(scene);
-//        stage.show();
-//        stage.setTitle("Tela Inicial");
-//    }
     /**
      * Passa para a tela de perfil
      */

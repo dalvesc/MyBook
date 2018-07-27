@@ -5,6 +5,9 @@ import mybook.model.*;
 import mybook.controller.*;
 import mybook.exception.CadastroInvalido;
 import mybook.exception.LoginInvalido;
+import mybook.exception.SemAmigos;
+import mybook.exception.SemArquivos;
+import mybook.exception.SemPublicacoes;
 import mybook.exception.SemResultados;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -87,7 +90,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testFazerPostagem() throws CadastroInvalido, LoginInvalido {
+    public void testFazerPostagem() throws CadastroInvalido, LoginInvalido, SemPublicacoes {
         assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertTrue(controller.fazerLogin("email1", "password1"));
 
@@ -95,7 +98,7 @@ public class ControllerTest {
     }
     
     @Test
-    public void testUploadArquivo() throws CadastroInvalido, LoginInvalido{
+    public void testUploadArquivo() throws CadastroInvalido, LoginInvalido, SemArquivos{
         assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertTrue(controller.fazerLogin("email1", "password1"));
         
@@ -103,7 +106,7 @@ public class ControllerTest {
     }
     
     @Test
-    public void testAmizades() throws CadastroInvalido, LoginInvalido{
+    public void testAmizades() throws CadastroInvalido, LoginInvalido, SemAmigos{
         assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2"));
         assertTrue(controller.fazerLogin("email1", "password1"));

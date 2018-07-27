@@ -9,8 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import mybook.exception.CadastroInvalido;
-import mybook.view.MyBook;
+import mybook.exception.*;
+import mybook.view.*;
 
 public class CadastroController implements Initializable {
 
@@ -45,11 +45,11 @@ public class CadastroController implements Initializable {
         Cadastrarbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                String foto = "imagens: " +fotoPerfil.getText();
                 try {
                     controller.cadastrarUsuario(password.getText(),
                             nome.getText(), email.getText(), nascimento.getText(),
-                            cidade.getText(), telefone.getText(), fotoPerfil.getText());
+                            cidade.getText(), telefone.getText(), foto);
                 } catch (CadastroInvalido ex) {
                     jaCadastrado.setText("Email já cadastrado");
                 }

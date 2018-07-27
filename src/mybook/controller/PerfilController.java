@@ -1,9 +1,9 @@
 package mybook.controller;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ObservableValue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,11 +15,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import mybook.model.Usuario;
-import mybook.view.MyBook;
+import mybook.exception.*;
+import mybook.model.*;
+import mybook.view.*;
 
 public class PerfilController implements Initializable {
-    
+
     private Usuario u;
 
     @FXML
@@ -42,10 +43,10 @@ public class PerfilController implements Initializable {
 
     @FXML
     private Text telefone;
-    
+
     @FXML
     private ListView<Usuario> amigos;
-    
+
     @FXML
     private Button abrir;
 
@@ -58,7 +59,6 @@ public class PerfilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         PassarTela tela = new PassarTela();
-        
 
         voltar.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -70,31 +70,38 @@ public class PerfilController implements Initializable {
         });
 
         ObservableList<Usuario> data = FXCollections.observableArrayList();
-        
-        for (Usuario usu : controller.amizades(u)) {
-            data.add(usu);
-        }
-        
-        amigos.setItems(data);
-        Usuario amigo = amigos.getSelectionModel().getSelectedItem();
-        abrir.setVisible(true);
-        abrir.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                tela.telaInicial(amigo);
+        try {
+            for (Usuario usu : controller.amizades(u)) {
+                data.add(usu);
             }
-        });
+
+            amigos.setItems(data);
+            Usuario amigo = amigos.getSelectionModel().getSelectedItem();
+            abrir.setVisible(true);
+            abrir.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    tela.telaInicial(amigo);
+                }
+            });
+        } catch (SemAmigos ex) {
+            Logger.getLogger(PerfilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        nome.setText("Nome: " + u.getNome());
+        email.setText("Email: " + u.getEmail());
+        nascimento.setText("Nascimento: " + u.getNascimento());
+        cidade.setText("Cidade: " + u.getCidade());
+        telefone.setText("Telefone: " + u.getTelefone());
         
-        nome.setText(u.getNome());
-        email.setText(u.getEmail());
-        nascimento.setText(u.getNascimento());
-        cidade.setText(u.getCidade());
-        telefone.setText(u.getTelefone());
-        Image image = new Image(u.getFotoPerfil());
-        fotoPefil.setImage(image);
-        
-        
+        try {
+            Image image = new Image(u.getFotoPerfil());
+            fotoPefil.setImage(image);
+        } catch (SemImagem ex) {
+            Logger.getLogger(PerfilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -6,8 +6,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import mybook.model.Usuario;
-import mybook.util.Graph;
+import mybook.model.*;
+import mybook.util.*;
 import mybook.exception.*;
 
 /**
@@ -20,6 +20,8 @@ public class Controller {
     //metodo para adicionar um cometario/publicação no amigo
     //facade
     //botão remover amizade
+    //problema na tela inicio
+    //metodo para pegar publicações/arquivos de determinado usuário
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario userLogado;
@@ -116,6 +118,8 @@ public class Controller {
      * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
      */
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
+        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "fotoPerfil");
+        grafo.addVertex(d);
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
@@ -154,7 +158,7 @@ public class Controller {
 
         while (itr.hasNext()) {
             Usuario u = itr.next();
-            if (u.getNome().equals(nomeUser)) {
+            if (u.getNome().equalsIgnoreCase(nomeUser)) {
                 usuariosBuscados.add(u);
             }
         }
@@ -171,7 +175,7 @@ public class Controller {
      * @param mensagem mensagem a ser postada.
      * @return "true" se a operação for bem sucedida e "false" se não.
      */
-    public boolean fazerPostagem(String mensagem) {
+    public boolean fazerPostagem(String mensagem) throws SemPublicacoes {
         return userLogado.getPostagens().add(mensagem);
     }
 
@@ -181,7 +185,7 @@ public class Controller {
      * @param caminhoArquivo caminho do arquivo.
      * @return "true" se a operação for bem sucedida e "false" se não.
      */
-    public boolean uploadArquivo(String caminhoArquivo) {
+    public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos {
         return userLogado.getArquivos().add(new File(caminhoArquivo));
     }
 
@@ -191,14 +195,17 @@ public class Controller {
      * @param u usuário que será verificado.
      * @return lista com os amigos.
      */
-    public List<Usuario> amizades(Usuario u) {
+    public List<Usuario> amizades(Usuario u) throws SemAmigos {
         List<Usuario> list = new LinkedList();
         itr = grafo.itrAdjacencies(u);
 
         while (itr.hasNext()) {
             list.add(itr.next());
         }
-        return list;
+        if (!list.isEmpty()) {
+            return list;
+        }
+        throw new SemAmigos();
     }
 
     public Usuario obterUsuario(String email) {

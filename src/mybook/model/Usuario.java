@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import mybook.exception.*;
 
 /**
  * Usuário que será criado para salvar os dados no programa
@@ -117,8 +118,10 @@ public class Usuario {
     /**
      *
      * @return lista com as postagens do usuário
+     * @throws mybook.exception.SemPublicacoes Caso o usuário não tenha
+     * publicações
      */
-    public List<String> getPostagens() {
+    public List<String> getPostagens() throws SemPublicacoes {
         return postagens;
     }
 
@@ -133,8 +136,9 @@ public class Usuario {
     /**
      *
      * @return lista com os arquivos do usuário
+     * @throws mybook.exception.SemArquivos Caso o usuário não tenha arquivos
      */
-    public List<File> getArquivos() {
+    public List<File> getArquivos() throws SemArquivos {
         return arquivos;
     }
 
@@ -149,8 +153,10 @@ public class Usuario {
     /**
      *
      * @return endereço da foto do usuário
+     * @throws mybook.exception.SemImagem Caso o usuário não tenha uma imagem
+     * válida
      */
-    public String getFotoPerfil() {
+    public String getFotoPerfil() throws SemImagem {
         return this.fotoPerfil;
     }
 

@@ -2,6 +2,8 @@ package mybook.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,8 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import mybook.model.Usuario;
-import mybook.view.MyBook;
+import mybook.exception.*;
+import mybook.model.*;
+import mybook.view.*;
 
 public class TelaInicialController implements Initializable {
 
@@ -33,15 +36,11 @@ public class TelaInicialController implements Initializable {
 
     @FXML
     private Button adicionarPublicacao;
-    
-    TelaInicialController(Usuario u){
+
+    TelaInicialController(Usuario u) {
         this.u = u;
     }
 
-//    TelaInicialController(Usuario u, int i){
-//        this.u = u;
-//    }
-    
     Controller controller = MyBook.getController();
 
     @Override
@@ -74,7 +73,7 @@ public class TelaInicialController implements Initializable {
         buscar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //tela.perfil(u);
+                tela.buscas();
                 buscar.getScene().getWindow().hide();
             }
         });
@@ -85,13 +84,17 @@ public class TelaInicialController implements Initializable {
                 tela.adicionarPublicacao(u);
             }
         });
-        
+
         ObservableList<String> data = FXCollections.observableArrayList();
-        
-        for (String usu : u.getPostagens()) {
-            data.add(usu);
+
+        try {
+            for (String usu : u.getPostagens()) {
+                data.add(usu);
+            }
+            publicacoes.setItems(data);
+        } catch (SemPublicacoes ex) {
+            Logger.getLogger(TelaInicialController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        publicacoes.setItems(data);
+
     }
 }
