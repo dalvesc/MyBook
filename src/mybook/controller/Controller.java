@@ -22,6 +22,7 @@ public class Controller {
     //metodo para adicionar um cometario
     //lista de amigos no perfil
     //adicionar amigo - criar tela???
+    //facade
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario userLogado;
@@ -35,12 +36,8 @@ public class Controller {
 
     /**
      *
-     * @return grafo em que os dados são armazenados
+     * @return usuário que está logado no programa
      */
-    public Graph getGrafo() {
-        return this.grafo;
-    }
-
     public Usuario getUserLogado() {
         return this.userLogado;
     }
