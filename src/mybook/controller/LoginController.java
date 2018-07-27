@@ -45,13 +45,15 @@ public class LoginController implements Initializable {
             public void handle(ActionEvent event) {
 
                 try {
-                    controller.setConta(controller.fazerLogin(Email.getText(), Password.getText()));
+                    if (controller.fazerLogin(Email.getText(), Password.getText())) {
+                        tela.telaInicial(controller.getUserLogado());
+                        entrarButton.getScene().getWindow().hide();
+                    }
                 } catch (LoginInvalido ex) {
                     loginInvalido.setText("Login Invalido");
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                tela.telaInicial();
-                entrarButton.getScene().getWindow().hide();
+
             }
         });
 

@@ -8,9 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import mybook.model.Usuario;
 import mybook.view.MyBook;
 
 public class AdicionarPublicacaoController implements Initializable {
+
+    private Usuario u;
 
     @FXML
     private Button voltar;
@@ -20,6 +23,10 @@ public class AdicionarPublicacaoController implements Initializable {
 
     @FXML
     private Button adicionar;
+
+    AdicionarPublicacaoController(Usuario u) {
+        this.u = u;
+    }
 
     Controller controller = MyBook.getController();
 
@@ -31,7 +38,7 @@ public class AdicionarPublicacaoController implements Initializable {
         voltar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                tela.telaInicial();
+                tela.telaInicial(u);
                 voltar.getScene().getWindow().hide();
             }
         });
@@ -39,8 +46,7 @@ public class AdicionarPublicacaoController implements Initializable {
         adicionar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                tela.telaInicial();
-                adicionar.getScene().getWindow().hide();
+                controller.fazerPostagem(mensagem.getText());
             }
         });
     }

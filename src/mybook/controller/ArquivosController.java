@@ -18,24 +18,29 @@ import mybook.view.MyBook;
 //não sei se funciona
 public class ArquivosController implements Initializable {
 
+    private Usuario u;
+    
     @FXML
     private Button voltar;
 
     @FXML
     private ListView<String> arquivos;
+    
+    ArquivosController(Usuario u){
+        this.u = u;
+    }
 
     Controller controller = MyBook.getController();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Usuario u = controller.getConta();
 
         PassarTela tela = new PassarTela();
         voltar.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                tela.telaInicial();
+                tela.telaInicial(u);
                 voltar.getScene().getWindow().hide();
             }
         });
@@ -47,13 +52,5 @@ public class ArquivosController implements Initializable {
         }
 
         arquivos.setItems(data);
-        arquivos.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue<? extends String> ov, String old_val,
-                        String new_val) -> {
-                    System.out.println(new_val);
-
-                });
-        
-        arquivos.getSelectionModel().getSelectedItem();
     }
 }

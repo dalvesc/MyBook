@@ -60,9 +60,6 @@ public class Usuario {
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
@@ -79,7 +76,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return nome do usuário
      */
     public String getNome() {
         return nome;
@@ -87,7 +84,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return email do usuário
      */
     public String getEmail() {
         return email;
@@ -95,7 +92,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return data de nascimento do usuário
      */
     public String getNascimento() {
         return nascimento;
@@ -103,7 +100,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return cidade do usuário
      */
     public String getCidade() {
         return cidade;
@@ -111,7 +108,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return telefone do usuário
      */
     public String getTelefone() {
         return telefone;
@@ -119,7 +116,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return lista com as postagens do usuário
      */
     public List<String> getPostagens() {
         return postagens;
@@ -135,7 +132,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return lista com os arquivos do usuário
      */
     public List<File> getArquivos() {
         return arquivos;
@@ -151,18 +148,10 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return endereço da foto do usuário
      */
     public String getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-    /**
-     *
-     * @param fotoPerfil
-     */
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+        return this.fotoPerfil;
     }
 
     @Override

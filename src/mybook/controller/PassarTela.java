@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import mybook.model.Usuario;
 
 /**
  * Metódos que irão servir para passar de uma tela para outra da interface
@@ -46,7 +47,7 @@ public class PassarTela {
         }
 
         Scene scene = new Scene(root);
-       
+
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Cadastro");
@@ -55,12 +56,13 @@ public class PassarTela {
     /**
      * Passa para a tela inicial
      */
-    public void telaInicial() {
+    public void telaInicial(Usuario u) {
+        TelaInicialController cons = new TelaInicialController(u);
         Stage stage = new Stage();
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/mybook/view/Inicio.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/TelaInicial.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,10 +74,33 @@ public class PassarTela {
         stage.setTitle("Tela Inicial");
     }
 
+//    /**
+//     * Passa para a tela inicial do amigo
+//     */
+//    public void telaInicialAmigo(Usuario u, int i) {
+//
+//        TelaInicialController inicio = TelaInicialController(u, i);
+//        Stage stage = new Stage();
+//        Parent root = null;
+//
+//        try {
+//            root = FXMLLoader.load(getClass().getResource("/mybook/view/TelaInicial.fxml"));
+//        } catch (IOException ex) {
+//            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        Scene scene = new Scene(root);
+//
+//        stage.setScene(scene);
+//        stage.show();
+//        stage.setTitle("Tela Inicial");
+//    }
     /**
      * Passa para a tela de perfil
      */
-    public void perfil() {
+    public void perfil(Usuario u) {
+        PerfilController cons = new PerfilController(u);
+
         Stage stage = new Stage();
         Parent root = null;
 
@@ -95,7 +120,9 @@ public class PassarTela {
     /**
      * Passa para a tela de arquivos
      */
-    public void arquivos() {
+    public void arquivos(Usuario u) {
+        ArquivosController cons = new ArquivosController(u);
+
         Stage stage = new Stage();
         Parent root = null;
 
@@ -131,11 +158,13 @@ public class PassarTela {
         stage.show();
         stage.setTitle("Busca");
     }
-    
+
     /**
      * Passa para a tela de adicionar uma publicação
      */
-    public void adicionarPublicacao() {
+    public void adicionarPublicacao(Usuario u) {
+        AdicionarPublicacaoController cons = new AdicionarPublicacaoController(u);
+
         Stage stage = new Stage();
         Parent root = null;
 
@@ -151,4 +180,5 @@ public class PassarTela {
         stage.show();
         stage.setTitle("Adicionar Publicacao");
     }
+
 }
