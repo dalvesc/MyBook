@@ -162,7 +162,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "nome = " + nome + ", email = " + email + '}';
+        return nome;
     }
 
 }
