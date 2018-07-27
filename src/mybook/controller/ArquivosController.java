@@ -53,5 +53,7 @@ public class ArquivosController implements Initializable {
                     System.out.println(new_val);
 
                 });
+        
+        arquivos.getSelectionModel().getSelectedItem();
     }
 }

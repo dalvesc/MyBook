@@ -17,6 +17,8 @@ public class Controller {
     //metodo para buscar pessoas, para abrir tela de uma pessoa especifica
     //pensando em criar classe para as publicações
     //metodo para adicionar um cometario
+    //lista de amigos no perfil
+    //adicionar amigo - criar tela???
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario conta;

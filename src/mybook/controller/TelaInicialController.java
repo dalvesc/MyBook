@@ -26,7 +26,7 @@ public class TelaInicialController implements Initializable {
 
     @FXML
     private Button sair;
-    
+
     @FXML
     private Button adicionarPublicacao;
 
@@ -41,8 +41,8 @@ public class TelaInicialController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 tela.login();
-                sair.getScene().getWindow().hide();
                 controller.setConta(null);
+                sair.getScene().getWindow().hide();
             }
         });
 
@@ -67,7 +67,7 @@ public class TelaInicialController implements Initializable {
                 buscar.getScene().getWindow().hide();
             }
         });
-        
+
         adicionarPublicacao.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
