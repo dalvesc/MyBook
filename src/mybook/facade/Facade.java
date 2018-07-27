@@ -55,4 +55,8 @@ public class Facade {
         return ctrl.obterUsuario(email);
     }
     
+    public void deslogar(){
+        ctrl.deslogar();
+    }
+    
 }

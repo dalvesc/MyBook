@@ -126,6 +126,13 @@ public class Controller {
         }
         throw new LoginInvalido();
     }
+    
+    /**
+     * Desloga o usuário.
+     */
+    public void deslogar(){
+        userLogado = null;
+    }
 
     //depois apagar
     public void imprimi() {
