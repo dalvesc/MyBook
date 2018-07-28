@@ -32,14 +32,9 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="fotoPerfil" layoutX="23.0" layoutY="231.0" prefHeight="25.0" prefWidth="149.0" promptText="Nome da imagem" />
       <Button fx:id="voltar" layoutX="23.0" layoutY="16.0" mnemonicParsing="false" text="Voltar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="186.0" layoutY="231.0" prefHeight="25.0" prefWidth="185.0" text="*Coloque a foto na pasta &quot;imagens&quot; (só .jpg)">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
     </children>
 </AnchorPane>

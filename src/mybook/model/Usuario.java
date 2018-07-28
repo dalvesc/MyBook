@@ -27,10 +27,9 @@ public class Usuario {
      * @param nascimento data de nascimento do usuário
      * @param cidade cidade do usuário
      * @param telefone telefone do usuário
-     * @param fotoPerfil foto do usuário
      */
     public Usuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone, String fotoPerfil) {
+            String cidade, String telefone) {
 
         this.password = password;
         this.nome = nome;
@@ -38,7 +37,6 @@ public class Usuario {
         this.nascimento = nascimento;
         this.cidade = cidade;
         this.telefone = telefone;
-        this.fotoPerfil = fotoPerfil;
         postagens = new LinkedList();
         arquivos = new LinkedList();
     }
@@ -149,6 +147,14 @@ public class Usuario {
      */
     public void setArquivos(List<File> arquivos) {
         this.arquivos = arquivos;
+    }
+
+    /**
+     *
+     * @param fotoPerfil string com a foto do usuário
+     */
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 
     /**

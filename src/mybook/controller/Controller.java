@@ -48,13 +48,12 @@ public class Controller {
      * @param nascimento data de nascimento do usuário
      * @param cidade cidade do usuário
      * @param telefone telefone do usuário
-     * @param fotoPerfil foto do usuário
      * @return usuário que foi cadastrado
      * @throws CadastroInvalido caso o email já tenha sido cadastrado.
      */
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone, String fotoPerfil) throws CadastroInvalido {
-        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
+            String cidade, String telefone) throws CadastroInvalido {
+        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
 
         if (grafo.addVertex(u)) {
             return u;
@@ -115,8 +114,8 @@ public class Controller {
      * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
      */
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
-        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "eu");
-        Usuario a = new Usuario("5221", "a", "ffff", "nascimento1", "cidade1", "telefone1", "voce");
+        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone");
+        Usuario a = new Usuario("5221", "a", "ffff", "nascimento1", "cidade1", "telefone1");
         grafo.addVertex(d);
         grafo.addVertex(a);
         grafo.addEdge(d, a);
@@ -211,7 +210,7 @@ public class Controller {
 
         itr = grafo.itrVertices();
 
-        Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx", "xx");
+        Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx");
 
         return (Usuario) grafo.getVertex(aux);
     }
