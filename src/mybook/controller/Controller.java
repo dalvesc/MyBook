@@ -158,6 +158,7 @@ public class Controller {
     /**
      * Adiciona à lista de postagens do usuário uma nova postagem.
      *
+     * @param u usuário que está recendo a postagem
      * @param mensagem mensagem a ser postada.
      * @return "true" se a operação for bem sucedida e "false" se não.
      * @throws mybook.exception.SemPublicacoes caso o usuário não tenha
@@ -173,7 +174,8 @@ public class Controller {
      * @param caminhoArquivo caminho do arquivo.
      * @return "true" se a operação for bem sucedida e "false" se não.
      * @throws mybook.exception.SemArquivos caso o usuário não tenha arquivos
-     * @throws java.io.FileNotFoundException caso o arquivo não tenha sido encontrado
+     * @throws java.io.FileNotFoundException caso o arquivo não tenha sido
+     * encontrado
      */
     public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos, FileNotFoundException {
         return userLogado.getArquivos().add(new File(caminhoArquivo));
@@ -198,7 +200,8 @@ public class Controller {
         }
         throw new SemAmigos();
     }
-
+    
+    //não acho que seja útil
     public Usuario obterUsuario(String email) {
 
         itr = grafo.itrVertices();
@@ -206,7 +209,7 @@ public class Controller {
         Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx", "xx");
 
         return (Usuario) grafo.getVertex(aux);
-    }//para pegar o usuário que foi selecionado (estudar sobre o metodo encontrado
+    }
 
     /**
      *

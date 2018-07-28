@@ -62,7 +62,6 @@ public class PassarTela {
         try {
             root = FXMLLoader.load(getClass().getResource("/mybook/view/TelaInicial.fxml"));
         } catch (IOException ex) {
-            System.out.println("aaaaa");
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
