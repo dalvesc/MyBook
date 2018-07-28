@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class Graph implements IGraph {
-    
+
     private Map<Object, Vertex> vertices;
 
     private class Vertex {
@@ -32,7 +32,7 @@ public class Graph implements IGraph {
 
     @Override
     public boolean addVertex(Object o) {
-        Vertex v = new Vertex(o);        
+        Vertex v = new Vertex(o);
         return vertices.put(o, v) == null;
     }
 
@@ -107,10 +107,10 @@ public class Graph implements IGraph {
 
     public boolean contains(Object o) {
         return vertices.containsKey(o);
-    }    
-    
-    public Object getVertex(Object key){
+    }
+
+    public Object getVertex(Object key) {
         return vertices.get(key).data;
     }
-    
+
 }

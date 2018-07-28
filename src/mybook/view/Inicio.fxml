@@ -35,5 +35,10 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Button fx:id="voltarAmigo" layoutX="20.0" layoutY="267.0" mnemonicParsing="false" text="Voltar" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>

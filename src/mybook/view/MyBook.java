@@ -10,11 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mybook.controller.Controller;
+import mybook.facade.*;
 
 public class MyBook extends Application {
 
-    static Controller controller = new Controller();
+    static Facade facade = new Facade();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -28,12 +28,12 @@ public class MyBook extends Application {
     }
 
     /**
-     * Retorna o controller que será utilizado durante a execução do programa
+     * Retorna o facade que será utilizado durante a execução do programa
      *
-     * @return controller criado
+     * @return facade criado
      */
-    static public Controller getController() {
-        return MyBook.controller;
+    static public Facade getFacade() {
+        return MyBook.facade;
     }
 
     /**

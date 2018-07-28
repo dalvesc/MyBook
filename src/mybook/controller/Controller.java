@@ -1,13 +1,14 @@
 package mybook.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import mybook.model.Usuario;
-import mybook.util.Graph;
+import mybook.model.*;
+import mybook.util.*;
 import mybook.exception.*;
 
 /**
@@ -17,11 +18,11 @@ import mybook.exception.*;
 public class Controller {
 
     //falta colocar para ler os arquivos com os usuários já cadastrados
-    //não fechar algumas telas quando abrir uma nova(perfil, arquivos...)
-    //metodo para buscar pessoas, para abrir tela de uma pessoa especifica
+    //amizade não funcionando direito
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario userLogado;
+    private Usuario u;
 
     /**
      * Construtor da classe
@@ -32,10 +33,10 @@ public class Controller {
 
     /**
      *
-     * @return grafo em que os dados são armazenados
+     * @return usuário que está logado no programa
      */
-    public Graph getGrafo() {
-        return this.grafo;
+    public Usuario getUserLogado() {
+        return this.userLogado;
     }
 
     /**
@@ -79,7 +80,7 @@ public class Controller {
      * @return "true" se a operação for bem sucedida e "false" se não.
      */
     public boolean fazerAmizade(String outroUser) {
-        
+        itr = grafo.itrVertices();
         while (itr.hasNext()) {
             Usuario aux = itr.next();
             if (outroUser.equals(aux.getNome())) {
@@ -96,7 +97,7 @@ public class Controller {
      * @return "true" se a operação for bem sucedida e "false" se não.
      */
     public boolean removerAmizade(String outroUser) {
-        
+        itr = grafo.itrVertices();
         while (itr.hasNext()) {
             Usuario aux = itr.next();
             if (outroUser.equals(aux.getNome())) {
@@ -107,7 +108,7 @@ public class Controller {
     }
 
     /**
-     * Faz o login do usuário no progrma
+     * Faz o login do usuário no programa
      *
      * @param email email de usuário
      * @param senha senha do usuário
@@ -149,22 +150,23 @@ public class Controller {
      * 
      * @param nomeUser nome a ser buscado.
      * @return lista com todos os usuarios que possuem esse nome.
-     * @throws mybook.exception.SemResultados caso não existam resultados para a busca.
+     * @throws mybook.exception.SemResultados caso não existam resultados para a
+     * busca.
      */
-    public List buscarUsuario(String nomeUser) throws SemResultados{
+    public List<Usuario> buscarUsuario(String nomeUser) throws SemResultados {
         
-        List <Usuario> usuariosBuscados = new LinkedList();
+        List<Usuario> usuariosBuscados = new LinkedList();
         
         itr = grafo.itrVertices();
         
-        while(itr.hasNext()){
+        while (itr.hasNext()) {
             Usuario u = itr.next();            
-            if(u.getNome().equals(nomeUser)){
+            if (u.getNome().equalsIgnoreCase(nomeUser)) {
                usuariosBuscados.add(u);
             }             
         }
         
-        if(!usuariosBuscados.isEmpty()){
+        if (!usuariosBuscados.isEmpty()) {
             return usuariosBuscados;
         }
         throw new SemResultados(nomeUser); 
@@ -173,11 +175,14 @@ public class Controller {
     /**
      * Adiciona à lista de postagens do usuário uma nova postagem.
      * 
+     * @param u usuário que está recendo a postagem
      * @param mensagem mensagem a ser postada.
      * @return "true" se a operação for bem sucedida e "false" se não.
+     * @throws mybook.exception.SemPublicacoes caso o usuário não tenha
+     * publicações
      */
-    public boolean fazerPostagem(String mensagem){        
-        return userLogado.getPostagens().add(mensagem);
+    public boolean fazerPostagem(Usuario u, String mensagem) throws SemPublicacoes {
+        return u.getPostagens().add(mensagem);
     }
     
     /**
@@ -185,17 +190,57 @@ public class Controller {
      * 
      * @param caminhoArquivo caminho do arquivo.
      * @return "true" se a operação for bem sucedida e "false" se não.
+     * @throws mybook.exception.SemArquivos caso o usuário não tenha arquivos
+     * @throws java.io.FileNotFoundException caso o arquivo não tenha sido
+     * encontrado
      */
-    public boolean uploadArquivo(String caminhoArquivo){        
+    public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos, FileNotFoundException {
         return userLogado.getArquivos().add(new File(caminhoArquivo));  
     }
     
-    public Usuario obterUsuario(String email){
+    /**
+     * Retorna as amizades que o usuário possui
+     *
+     * @param u usuário que será verificado.
+     * @return lista com os amigos.
+     * @throws mybook.exception.SemAmigos caso o usuário não tenha amigos
+     */
+    public List<Usuario> amizades(Usuario u) throws SemAmigos {
+        List<Usuario> list = new LinkedList();
+        itr = grafo.itrAdjacencies(u);
         
+        while (itr.hasNext()) {
+            list.add(itr.next());
+        }
+        if (!list.isEmpty()) {
+            return list;
+        }
+        throw new SemAmigos();
+    }
+    
+    //não acho que seja útil
+    public Usuario obterUsuario(String email) {
+
         itr = grafo.itrVertices();
         
         Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx", "xx");
         
-        return (Usuario)grafo.getVertex(aux);
+        return (Usuario) grafo.getVertex(aux);
+    }
+
+    /**
+     *
+     * @param u iguala a variável para poder utiliza-la posteriomente
+     */
+    public void setU(Usuario u) {
+        this.u = u;
+}
+
+    /**
+     *
+     * @return variável com os dados do usuário que sendo pedido
+     */
+    public Usuario getU() {
+        return this.u;
     }
 }

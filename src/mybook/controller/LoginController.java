@@ -12,12 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import mybook.exception.LoginInvalido;
-import mybook.view.MyBook;
+import mybook.exception.*;
+import mybook.facade.*;
+import mybook.view.*;
 
 public class LoginController implements Initializable {
 
-    //colocar label para login errado
     @FXML
     private Button cadastrarButton;
     @FXML
@@ -29,7 +29,7 @@ public class LoginController implements Initializable {
     @FXML
     private Label loginInvalido;
 
-    Controller controller = MyBook.getController();
+    Facade facade = MyBook.getFacade();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -39,19 +39,17 @@ public class LoginController implements Initializable {
         entrarButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                boolean passar = true;
-                while (passar) {
-                    try {
-                        controller.fazerLogin(Email.getText(), Password.getText());
-                        passar = false;
-                    } catch (LoginInvalido ex) {
-                        passar = true;
-                        loginInvalido.setText("Login Invalido");
-                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+
+                try {
+                    if (facade.fazerLogin(Email.getText(), Password.getText())) {
+                        facade.setU(facade.getUserLogado());
+                        tela.telaInicial();
+                        entrarButton.getScene().getWindow().hide();
                     }
+                } catch (LoginInvalido ex) {
+                    loginInvalido.setText("Login Invalido");
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                tela.telaInicial();
-                entrarButton.getScene().getWindow().hide();
 
             }
         });

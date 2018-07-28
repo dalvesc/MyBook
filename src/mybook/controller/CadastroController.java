@@ -1,7 +1,10 @@
 package mybook.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,8 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import mybook.exception.CadastroInvalido;
-import mybook.view.MyBook;
+import mybook.exception.*;
+import mybook.facade.*;
+import mybook.view.*;
 
 public class CadastroController implements Initializable {
 
@@ -35,32 +39,25 @@ public class CadastroController implements Initializable {
     @FXML
     private Button voltar;
 
-    Controller controller = MyBook.getController();
+    Facade facade = MyBook.getFacade();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         PassarTela tela = new PassarTela();
-        String password1 = password.getText();
-        String nome1 = nome.getText();
-        String email1 = email.getText();
-        String nascimento1 = nascimento.getText();
-        String cidade1 = cidade.getText();
-        String telefone1 = telefone.getText();
-        String fotoPerfil1 = fotoPerfil.getText();
 
         Cadastrarbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                boolean passou = true;
-                while (passou) {
-                    try {
-                        controller.cadastrarUsuario(password1, nome1, email1, nascimento1, cidade1, telefone1, fotoPerfil1);
-                        passou = false;
-                    } catch (CadastroInvalido ex) {
-                        passou = true;
-                        jaCadastrado.setText("Email já cadastrado");
-                    }
+                String foto = "imagens: " + fotoPerfil.getText();
+                try {
+                    facade.cadastrarUsuario(password.getText(),
+                            nome.getText(), email.getText(), nascimento.getText(),
+                            cidade.getText(), telefone.getText(), foto);
+                } catch (CadastroInvalido ex) {
+                    jaCadastrado.setText("Email já cadastrado");
+                } catch (IOException ex) {
+                    Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 tela.login();
                 Cadastrarbutton.getScene().getWindow().hide();

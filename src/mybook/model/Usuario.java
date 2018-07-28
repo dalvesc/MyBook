@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import mybook.exception.*;
 
 /**
  * Usuário que será criado para salvar os dados no programa
@@ -76,7 +77,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return nome do usuário
      */
     public String getNome() {
         return nome;
@@ -84,7 +85,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return email do usuário
      */
     public String getEmail() {
         return email;
@@ -92,7 +93,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return data de nascimento do usuário
      */
     public String getNascimento() {
         return nascimento;
@@ -100,7 +101,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return cidade do usuário
      */
     public String getCidade() {
         return cidade;
@@ -108,7 +109,7 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return telefone do usuário
      */
     public String getTelefone() {
         return telefone;
@@ -116,9 +117,11 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return lista com as postagens do usuário
+     * @throws mybook.exception.SemPublicacoes Caso o usuário não tenha
+     * publicações
      */
-    public List<String> getPostagens() {
+    public List<String> getPostagens() throws SemPublicacoes {
         return postagens;
     }
 
@@ -132,9 +135,10 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return lista com os arquivos do usuário
+     * @throws mybook.exception.SemArquivos Caso o usuário não tenha arquivos
      */
-    public List<File> getArquivos() {
+    public List<File> getArquivos() throws SemArquivos {
         return arquivos;
     }
 
@@ -148,23 +152,16 @@ public class Usuario {
 
     /**
      *
-     * @return
+     * @return endereço da foto do usuário
+     *
      */
     public String getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-    /**
-     *
-     * @param fotoPerfil
-     */
-    public void setFotoPerfil(String fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
+        return this.fotoPerfil;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "nome = " + nome + ", email = " + email + '}';
+        return nome;
     }
 
 }
