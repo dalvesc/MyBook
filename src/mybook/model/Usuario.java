@@ -9,6 +9,7 @@ import mybook.exception.*;
 /**
  * Usuário que será criado para salvar os dados no programa
  *
+ * @author Daniel Alves e Gabriela dos Santos
  */
 public class Usuario {
 
@@ -153,7 +154,6 @@ public class Usuario {
     /**
      *
      * @return endereço da foto do usuário
-     *
      */
     public String getFotoPerfil() {
         return this.fotoPerfil;

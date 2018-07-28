@@ -1,5 +1,6 @@
 package mybook.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -139,8 +140,8 @@ public class PerfilController implements Initializable {
         nascimento.setText("Nascimento: " + u.getNascimento());
         cidade.setText("Cidade: " + u.getCidade());
         telefone.setText("Telefone: " + u.getTelefone());
-
-        image = new Image("mybook/imagens/" + u.getFotoPerfil() + ".jpg");
+        
+        image = new Image("/mybook/imagens/" + u.getFotoPerfil()  + ".jpg");
         fotoPefil.setImage(image);
     }
 

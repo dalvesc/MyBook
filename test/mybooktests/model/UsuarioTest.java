@@ -1,6 +1,5 @@
 package mybooktests.model;
 
-import mybook.exception.SemImagem;
 import mybook.model.*;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -53,7 +52,7 @@ public class UsuarioTest {
     }
 
     @Test
-    public void testGetFotoPerfil() throws SemImagem {
+    public void testGetFotoPerfil() {
         assertEquals("fotoPerfil1", usuario1.getFotoPerfil());
         assertEquals("fotoPerfil2", usuario2.getFotoPerfil());
     }

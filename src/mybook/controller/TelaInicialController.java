@@ -48,7 +48,6 @@ public class TelaInicialController implements Initializable {
 
         PassarTela tela = new PassarTela();
         u = facade.getU();
-        System.out.println(u);
         sair.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -96,6 +95,7 @@ public class TelaInicialController implements Initializable {
                 public void handle(ActionEvent event) {
                     facade.setU(facade.getUserLogado());
                     tela.telaInicial();
+                    voltarAmigo.getScene().getWindow().hide();
                 }
             });
         }

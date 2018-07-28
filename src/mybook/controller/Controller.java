@@ -14,11 +14,11 @@ import mybook.exception.*;
 /**
  * Classe que controla as interações entre a View e o restante do sistema.
  *
+ * @author Daniel Alves e Gabriela dos Santos
  */
 public class Controller {
 
     //falta colocar para ler os arquivos com os usuários já cadastrados
-    //abrir tela do amigo
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario userLogado;
@@ -54,8 +54,6 @@ public class Controller {
      */
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
             String cidade, String telefone, String fotoPerfil) throws CadastroInvalido {
-        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "eu");
-        grafo.addVertex(d);
         Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
 
         if (grafo.addVertex(u)) {
@@ -121,6 +119,7 @@ public class Controller {
         Usuario a = new Usuario("5221", "a", "ffff", "nascimento1", "cidade1", "telefone1", "voce");
         grafo.addVertex(d);
         grafo.addVertex(a);
+        grafo.addEdge(d, a);
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
@@ -206,7 +205,7 @@ public class Controller {
         }
         throw new SemAmigos();
     }
-    
+
     //não acho que seja útil
     public Usuario obterUsuario(String email) {
 

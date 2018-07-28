@@ -10,6 +10,7 @@ import mybook.model.Usuario;
 /**
  * Classe para chamar os métodos do controlador.
  *
+ * @author Daniel Alves e Gabriela dos Santos
  */
 public class Facade {
 

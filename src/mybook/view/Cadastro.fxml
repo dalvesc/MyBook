@@ -37,6 +37,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="186.0" layoutY="235.0" text="Coloque a foto na pasta &quot;imagens&quot;" />
+      <Label layoutX="186.0" layoutY="231.0" prefHeight="25.0" prefWidth="185.0" text="*Coloque a foto na pasta &quot;imagens&quot; (só .jpg)">
+         <font>
+            <Font size="9.0" />
+         </font></Label>
     </children>
 </AnchorPane>
