@@ -14,20 +14,23 @@ import mybook.exception.*;
 /**
  * Classe que controla as interações entre a View e o restante do sistema.
  *
+ * @author Daniel Alves e Gabriela dos Santos
  */
 public class Controller {
 
     //falta colocar para ler os arquivos com os usuários já cadastrados
-    //abrir tela do amigo
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario userLogado;
     private Usuario u;
+    private ControllerArquivo controllerArquivo;
 
     /**
      * Construtor da classe
      */
     public Controller() {
+        controllerArquivo = new ControllerArquivo();
+        controllerArquivo.usuariosCadastrados();
         grafo = new Graph();
     }
 
@@ -48,21 +51,37 @@ public class Controller {
      * @param nascimento data de nascimento do usuário
      * @param cidade cidade do usuário
      * @param telefone telefone do usuário
-     * @param fotoPerfil foto do usuário
      * @return usuário que foi cadastrado
      * @throws CadastroInvalido caso o email já tenha sido cadastrado.
      */
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone, String fotoPerfil) throws CadastroInvalido {
-        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "eu");
-        grafo.addVertex(d);
-        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
+            String cidade, String telefone) throws CadastroInvalido {
+        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
 
         if (grafo.addVertex(u)) {
+            controllerArquivo.cadastrarUsuario(u);
             return u;
         }
 
         throw new CadastroInvalido(email);
+    }
+
+    /**
+     * Carrega um usuário no programa.
+     *
+     * @param password senha do usuário
+     * @param nome nome do usuário
+     * @param email email do usuário
+     * @param nascimento data de nascimento do usuário
+     * @param cidade cidade do usuário
+     * @param telefone telefone do usuário
+     * @param fotoPerfil foto do usuario
+     */
+    public void carregarUsuarios(String password, String nome, String email, String nascimento,
+            String cidade, String telefone, String fotoPerfil) {
+        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
+        u.setFotoPerfil(fotoPerfil);
+        grafo.addVertex(u);
     }
 
     /**
@@ -117,10 +136,11 @@ public class Controller {
      * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
      */
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
-        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "eu");
-        Usuario a = new Usuario("5221", "a", "ffff", "nascimento1", "cidade1", "telefone1", "voce");
-        grafo.addVertex(d);
-        grafo.addVertex(a);
+//        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone");
+//        Usuario a = new Usuario("5221", "a", "ffff", "nascimento1", "cidade1", "telefone1");
+//        grafo.addVertex(d);
+//        grafo.addVertex(a);
+//        grafo.addEdge(d, a);
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
@@ -206,13 +226,13 @@ public class Controller {
         }
         throw new SemAmigos();
     }
-    
+
     //não acho que seja útil
     public Usuario obterUsuario(String email) {
 
         itr = grafo.itrVertices();
 
-        Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx", "xx");
+        Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx");
 
         return (Usuario) grafo.getVertex(aux);
     }

@@ -35,8 +35,6 @@ public class CadastroController implements Initializable {
     @FXML
     private Label jaCadastrado;
     @FXML
-    private TextField fotoPerfil;
-    @FXML
     private Button voltar;
 
     Facade facade = MyBook.getFacade();
@@ -53,7 +51,7 @@ public class CadastroController implements Initializable {
                 try {
                     facade.cadastrarUsuario(password.getText(),
                             nome.getText(), email.getText(), nascimento.getText(),
-                            cidade.getText(), telefone.getText(), fotoPerfil.getText());
+                            cidade.getText(), telefone.getText());
                 } catch (CadastroInvalido ex) {
                     jaCadastrado.setText("Email já cadastrado");
                     cadastrou = false;

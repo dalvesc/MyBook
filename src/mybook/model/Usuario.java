@@ -9,6 +9,7 @@ import mybook.exception.*;
 /**
  * Usuário que será criado para salvar os dados no programa
  *
+ * @author Daniel Alves e Gabriela dos Santos
  */
 public class Usuario {
 
@@ -26,10 +27,9 @@ public class Usuario {
      * @param nascimento data de nascimento do usuário
      * @param cidade cidade do usuário
      * @param telefone telefone do usuário
-     * @param fotoPerfil foto do usuário
      */
     public Usuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone, String fotoPerfil) {
+            String cidade, String telefone) {
 
         this.password = password;
         this.nome = nome;
@@ -37,7 +37,6 @@ public class Usuario {
         this.nascimento = nascimento;
         this.cidade = cidade;
         this.telefone = telefone;
-        this.fotoPerfil = fotoPerfil;
         postagens = new LinkedList();
         arquivos = new LinkedList();
     }
@@ -152,8 +151,15 @@ public class Usuario {
 
     /**
      *
-     * @return endereço da foto do usuário
+     * @param fotoPerfil string com a foto do usuário
+     */
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
+
+    /**
      *
+     * @return endereço da foto do usuário
      */
     public String getFotoPerfil() {
         return this.fotoPerfil;

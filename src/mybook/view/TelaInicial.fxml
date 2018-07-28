@@ -22,7 +22,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="sair" layoutX="20.0" layoutY="16.0" mnemonicParsing="false" text="Sair">
+      <Button fx:id="sair" layoutX="27.0" layoutY="266.0" mnemonicParsing="false" text="Sair">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -35,5 +35,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Button fx:id="voltarAmigo" layoutX="18.0" layoutY="14.0" mnemonicParsing="false" text="Voltar" visible="false" />
     </children>
 </AnchorPane>

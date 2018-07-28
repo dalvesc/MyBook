@@ -12,7 +12,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -26,39 +28,34 @@ public class PerfilController implements Initializable {
     private Usuario u;
     private Usuario amigo;
     Image image;
-
     @FXML
     private Button voltar;
-
     @FXML
     private ImageView fotoPefil;
-
     @FXML
     private Text nome;
-
     @FXML
     private Text email;
-
     @FXML
     private Text nascimento;
-
     @FXML
     private Text cidade;
-
     @FXML
     private Text telefone;
-
     @FXML
     private ListView<Usuario> amigos;
-
     @FXML
     private Button abrir;
-
     @FXML
     private Button removerAmigo;
-
     @FXML
     private Button deletarConta;
+    @FXML
+    private Button addFoto;
+    @FXML
+    private TextField nomeFoto;
+    @FXML
+    private Label label;
 
     Facade facade = MyBook.getFacade();
 
@@ -134,13 +131,34 @@ public class PerfilController implements Initializable {
             });
         }
 
+        if (u.equals(facade.getUserLogado())) {
+            addFoto.setVisible(true);
+            nomeFoto.setVisible(true);
+            label.setVisible(true);
+            addFoto.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    u.setFotoPerfil(nomeFoto.getText());
+                    tela.telaInicial();
+                    addFoto.getScene().getWindow().hide();
+                }
+            });
+        }
         nome.setText("Nome: " + u.getNome());
         email.setText("Email: " + u.getEmail());
         nascimento.setText("Nascimento: " + u.getNascimento());
         cidade.setText("Cidade: " + u.getCidade());
         telefone.setText("Telefone: " + u.getTelefone());
-
-        image = new Image("mybook/imagens/" + u.getFotoPerfil() + ".jpg");
+        if (u.getFotoPerfil() != null) {
+            try {
+                image = new Image("/mybook/imagens/" + u.getFotoPerfil() + ".jpg");
+            } catch (IllegalArgumentException ex) {
+                System.out.println("aaaaaa");
+                u.setFotoPerfil("usuario");
+                image = new Image("/mybook/imagens/" + u.getFotoPerfil() + ".jpg");
+            }
+        }
         fotoPefil.setImage(image);
     }
 
