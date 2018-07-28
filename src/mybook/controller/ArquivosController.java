@@ -70,6 +70,7 @@ public class ArquivosController implements Initializable {
 
         if (u.equals(facade.getUserLogado())) {
             addArquivo.setVisible(true);
+            caminhoArquivo.setVisible(true);
             addArquivo.setOnAction(new EventHandler<ActionEvent>() {
 
                 @Override

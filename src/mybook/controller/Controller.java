@@ -18,7 +18,7 @@ import mybook.exception.*;
 public class Controller {
 
     //falta colocar para ler os arquivos com os usuários já cadastrados
-    //amizade não funcionando direito
+    //abrir tela do amigo
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario userLogado;
@@ -54,7 +54,8 @@ public class Controller {
      */
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
             String cidade, String telefone, String fotoPerfil) throws CadastroInvalido {
-
+        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "eu");
+        grafo.addVertex(d);
         Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
 
         if (grafo.addVertex(u)) {
@@ -70,13 +71,13 @@ public class Controller {
      * @return "true" caso o usuário tenha sido removido e "false" caso não.
      */
     public boolean removerConta() {
-        return grafo.removeVertex(userLogado);   
+        return grafo.removeVertex(userLogado);
     }
 
     /**
      * Cria uma relação de amizade(aresta) entre dois usuários.
      *
-     * @param outroUser     
+     * @param outroUser
      * @return "true" se a operação for bem sucedida e "false" se não.
      */
     public boolean fazerAmizade(String outroUser) {
@@ -84,7 +85,7 @@ public class Controller {
         while (itr.hasNext()) {
             Usuario aux = itr.next();
             if (outroUser.equals(aux.getNome())) {
-                return grafo.addEdge(userLogado, aux);                                
+                return grafo.addEdge(userLogado, aux);
             }
         }
         return false;
@@ -101,7 +102,7 @@ public class Controller {
         while (itr.hasNext()) {
             Usuario aux = itr.next();
             if (outroUser.equals(aux.getNome())) {
-                return grafo.removeEdge(userLogado, aux);                                
+                return grafo.removeEdge(userLogado, aux);
             }
         }
         return false;
@@ -116,65 +117,53 @@ public class Controller {
      * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
      */
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
+        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "eu");
+        Usuario a = new Usuario("5221", "a", "ffff", "nascimento1", "cidade1", "telefone1", "voce");
+        grafo.addVertex(d);
+        grafo.addVertex(a);
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
             Usuario u = itr.next();
             if (u.getEmail().equals(email) && u.getPassword().equals(senha)) {
                 userLogado = u;
+                setU(u);
                 return true;
             }
         }
         throw new LoginInvalido();
     }
-    
-    /**
-     * Desloga o usuário.
-     */
-    public void deslogar(){
-        userLogado = null;
-    }
 
-    //depois apagar
-    public void imprimi() {
-        itr = grafo.itrVertices();
-
-        while (itr.hasNext()) {
-            Usuario u = itr.next();
-            System.out.println(u);
-        }
-    }
-    
     /**
      * Faz uma busca por usuários pelo nome.
-     * 
+     *
      * @param nomeUser nome a ser buscado.
      * @return lista com todos os usuarios que possuem esse nome.
      * @throws mybook.exception.SemResultados caso não existam resultados para a
      * busca.
      */
     public List<Usuario> buscarUsuario(String nomeUser) throws SemResultados {
-        
+
         List<Usuario> usuariosBuscados = new LinkedList();
-        
+
         itr = grafo.itrVertices();
-        
+
         while (itr.hasNext()) {
-            Usuario u = itr.next();            
+            Usuario u = itr.next();
             if (u.getNome().equalsIgnoreCase(nomeUser)) {
-               usuariosBuscados.add(u);
-            }             
+                usuariosBuscados.add(u);
+            }
         }
-        
+
         if (!usuariosBuscados.isEmpty()) {
             return usuariosBuscados;
         }
-        throw new SemResultados(nomeUser); 
+        throw new SemResultados(nomeUser);
     }
-    
+
     /**
      * Adiciona à lista de postagens do usuário uma nova postagem.
-     * 
+     *
      * @param u usuário que está recendo a postagem
      * @param mensagem mensagem a ser postada.
      * @return "true" se a operação for bem sucedida e "false" se não.
@@ -184,10 +173,10 @@ public class Controller {
     public boolean fazerPostagem(Usuario u, String mensagem) throws SemPublicacoes {
         return u.getPostagens().add(mensagem);
     }
-    
+
     /**
      * Adiciona à lista de arquivos do usuário um novo arquivo.
-     * 
+     *
      * @param caminhoArquivo caminho do arquivo.
      * @return "true" se a operação for bem sucedida e "false" se não.
      * @throws mybook.exception.SemArquivos caso o usuário não tenha arquivos
@@ -195,9 +184,9 @@ public class Controller {
      * encontrado
      */
     public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos, FileNotFoundException {
-        return userLogado.getArquivos().add(new File(caminhoArquivo));  
+        return userLogado.getArquivos().add(new File(caminhoArquivo));
     }
-    
+
     /**
      * Retorna as amizades que o usuário possui
      *
@@ -208,7 +197,7 @@ public class Controller {
     public List<Usuario> amizades(Usuario u) throws SemAmigos {
         List<Usuario> list = new LinkedList();
         itr = grafo.itrAdjacencies(u);
-        
+
         while (itr.hasNext()) {
             list.add(itr.next());
         }
@@ -222,9 +211,9 @@ public class Controller {
     public Usuario obterUsuario(String email) {
 
         itr = grafo.itrVertices();
-        
+
         Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx", "xx");
-        
+
         return (Usuario) grafo.getVertex(aux);
     }
 
@@ -234,7 +223,7 @@ public class Controller {
      */
     public void setU(Usuario u) {
         this.u = u;
-}
+    }
 
     /**
      *

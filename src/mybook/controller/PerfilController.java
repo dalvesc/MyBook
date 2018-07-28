@@ -24,6 +24,7 @@ import mybook.view.*;
 public class PerfilController implements Initializable {
 
     private Usuario u;
+    private Usuario amigo;
     Image image;
 
     @FXML
@@ -84,7 +85,8 @@ public class PerfilController implements Initializable {
             }
 
             amigos.setItems(data);
-            Usuario amigo = amigos.getSelectionModel().getSelectedItem();
+            amigos.getSelectionModel().selectedItemProperty().addListener(
+                    (observable, oldValue, newValue) -> setAmigo(newValue));
             abrir.setVisible(true);
             abrir.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -92,6 +94,7 @@ public class PerfilController implements Initializable {
                 public void handle(ActionEvent event) {
                     facade.setU(amigo);
                     tela.telaInicial();
+                    abrir.getScene().getWindow().hide();
                 }
             });
         } catch (SemAmigos ex) {
@@ -107,6 +110,7 @@ public class PerfilController implements Initializable {
                     facade.removerAmizade(u.getNome());
                     facade.setU(facade.getUserLogado());
                     tela.telaInicial();
+                    removerAmigo.getScene().getWindow().hide();
                 }
             });
         }
@@ -120,6 +124,7 @@ public class PerfilController implements Initializable {
                     try {
                         if (facade.removerConta()) {
                             tela.login();
+                            deletarConta.getScene().getWindow().hide();
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(PerfilController.class.getName()).log(Level.SEVERE, null, ex);
@@ -137,6 +142,10 @@ public class PerfilController implements Initializable {
 
         image = new Image("mybook/imagens/" + u.getFotoPerfil() + ".jpg");
         fotoPefil.setImage(image);
+    }
+
+    public void setAmigo(Usuario amigo) {
+        this.amigo = amigo;
     }
 
 }

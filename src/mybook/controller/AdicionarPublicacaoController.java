@@ -52,6 +52,8 @@ public class AdicionarPublicacaoController implements Initializable {
                 } catch (SemPublicacoes ex) {
                     Logger.getLogger(AdicionarPublicacaoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                tela.telaInicial();
+                adicionar.getScene().getWindow().hide();
             }
         });
     }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,7 +25,7 @@ import mybook.view.*;
 public class BuscarAmigosController implements Initializable {
 
     List<Usuario> list = new LinkedList();
-
+    private Usuario amigo;
     @FXML
     private Button voltar;
 
@@ -36,9 +37,6 @@ public class BuscarAmigosController implements Initializable {
 
     @FXML
     private Button buscar;
-
-    @FXML
-    private Label semResultados;
 
     @FXML
     private Label selecionar;
@@ -74,20 +72,27 @@ public class BuscarAmigosController implements Initializable {
                     }
 
                     buscados.setItems(data);
-                    Usuario amigo = buscados.getSelectionModel().getSelectedItem();
+                    buscados.getSelectionModel().selectedItemProperty().addListener(
+                            (observable, oldValue, newValue) -> setAmigo(newValue));
                     adicionar.setVisible(true);
                     adicionar.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            facade.fazerAmizade(amigo.getNome());
+                            if (facade.fazerAmizade(amigo.getNome())) {
+                                selecionar.setText("Adicionado");
+                            }
                         }
                     });
                 } catch (SemResultados ex) {
-                    semResultados.setText("Sem resultados");
+                    selecionar.setText("Sem resultados");
                     Logger.getLogger(BuscarAmigosController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
 
+    }
+
+    public void setAmigo(Usuario amigo) {
+        this.amigo = amigo;
     }
 }
