@@ -38,9 +38,6 @@ public class BuscarAmigosController implements Initializable {
     private Button buscar;
 
     @FXML
-    private Label semResultados;
-
-    @FXML
     private Label selecionar;
 
     @FXML
@@ -76,14 +73,16 @@ public class BuscarAmigosController implements Initializable {
                     buscados.setItems(data);
                     Usuario amigo = buscados.getSelectionModel().getSelectedItem();
                     adicionar.setVisible(true);
+                    //adicionar
                     adicionar.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
+                            System.out.println(amigo);
                             facade.fazerAmizade(amigo.getNome());
                         }
                     });
                 } catch (SemResultados ex) {
-                    semResultados.setText("Sem resultados");
+                    selecionar.setText("Sem resultados");
                     Logger.getLogger(BuscarAmigosController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

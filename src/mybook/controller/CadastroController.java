@@ -49,11 +49,10 @@ public class CadastroController implements Initializable {
         Cadastrarbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String foto = "imagens: " + fotoPerfil.getText();
                 try {
                     facade.cadastrarUsuario(password.getText(),
                             nome.getText(), email.getText(), nascimento.getText(),
-                            cidade.getText(), telefone.getText(), foto);
+                            cidade.getText(), telefone.getText(), fotoPerfil.getText());
                 } catch (CadastroInvalido ex) {
                     jaCadastrado.setText("Email já cadastrado");
                 } catch (IOException ex) {
@@ -68,6 +67,7 @@ public class CadastroController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 tela.login();
+                voltar.getScene().getWindow().hide();
             }
         });
     }

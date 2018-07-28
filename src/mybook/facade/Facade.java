@@ -20,9 +20,9 @@ public class Facade {
     }
 
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone, String endereco) throws CadastroInvalido, IOException {
+            String cidade, String telefone, String fotoPerfil) throws CadastroInvalido, IOException {
 
-        return ctrl.cadastrarUsuario(password, nome, email, nascimento, cidade, telefone, endereco);
+        return ctrl.cadastrarUsuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
     }
 
     public Usuario getUserLogado() {

@@ -1,5 +1,6 @@
 package mybooktests.controller;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import mybook.model.*;
 import mybook.controller.*;
@@ -98,7 +99,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testUploadArquivo() throws CadastroInvalido, LoginInvalido, SemArquivos {
+    public void testUploadArquivo() throws CadastroInvalido, LoginInvalido, SemArquivos, FileNotFoundException {
         assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertTrue(controller.fazerLogin("email1", "password1"));
 
