@@ -19,11 +19,10 @@ public class ControllerArquivo {
      */
     public void usuariosCadastrados() {
         Facade facade = MyBook.getFacade();
-
+        String password, nome, email, nascimento, cidade, telefone, fotoPerfil;
         try {
             File arq = new File("usuariosCadastrados.txt");
-            String password, nome, email, nascimento, cidade, telefone, fotoPerfil;
-
+           
             Scanner scan = new Scanner(new FileReader(arq)).useDelimiter(" |\n");
             while (scan.hasNext()) {
                 password = scan.next();
@@ -34,7 +33,7 @@ public class ControllerArquivo {
                 telefone = scan.next();
                 fotoPerfil = scan.next();
                 
-                facade.carregarUsuarios(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
+                facade.carregarUsuarios(password, nome, email, nascimento, cidade, telefone, fotoPerfil);//erro aqui
             }
             scan.close();
         } catch (Exception e) {
