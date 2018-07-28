@@ -23,11 +23,14 @@ public class Controller {
     private Iterator<Usuario> itr;
     private Usuario userLogado;
     private Usuario u;
+    private ControllerArquivo controllerArquivo;
 
     /**
      * Construtor da classe
      */
     public Controller() {
+        controllerArquivo = new ControllerArquivo();
+        controllerArquivo.usuariosCadastrados();
         grafo = new Graph();
     }
 
@@ -56,10 +59,29 @@ public class Controller {
         Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
 
         if (grafo.addVertex(u)) {
+            controllerArquivo.cadastrarUsuario(u);
             return u;
         }
 
         throw new CadastroInvalido(email);
+    }
+
+    /**
+     * Carrega um usuário no programa.
+     *
+     * @param password senha do usuário
+     * @param nome nome do usuário
+     * @param email email do usuário
+     * @param nascimento data de nascimento do usuário
+     * @param cidade cidade do usuário
+     * @param telefone telefone do usuário
+     * @param fotoPerfil foto do usuario
+     */
+    public void carregarUsuarios(String password, String nome, String email, String nascimento,
+            String cidade, String telefone, String fotoPerfil) {
+        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
+        u.setFotoPerfil(fotoPerfil);
+        grafo.addVertex(u);
     }
 
     /**
