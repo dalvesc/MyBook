@@ -118,8 +118,6 @@ public class Controller {
      * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
      */
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
-        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "eu");
-        grafo.addVertex(d);
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
@@ -164,6 +162,8 @@ public class Controller {
      *
      * @param mensagem mensagem a ser postada.
      * @return "true" se a operação for bem sucedida e "false" se não.
+     * @throws mybook.exception.SemPublicacoes caso o usuário não tenha
+     * publicações
      */
     public boolean fazerPostagem(String mensagem) throws SemPublicacoes {
         return userLogado.getPostagens().add(mensagem);
@@ -174,16 +174,18 @@ public class Controller {
      *
      * @param caminhoArquivo caminho do arquivo.
      * @return "true" se a operação for bem sucedida e "false" se não.
+     * @throws mybook.exception.SemArquivos caso o usuário não tenha arquivos
      */
     public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos {
         return userLogado.getArquivos().add(new File(caminhoArquivo));
     }
 
     /**
-     * Retorna as amizades que o usuário tem
+     * Retorna as amizades que o usuário possui
      *
      * @param u usuário que será verificado.
      * @return lista com os amigos.
+     * @throws mybook.exception.SemAmigos caso o usuário não tenha amigos
      */
     public List<Usuario> amizades(Usuario u) throws SemAmigos {
         List<Usuario> list = new LinkedList();
@@ -207,10 +209,18 @@ public class Controller {
         return (Usuario) grafo.getVertex(aux);
     }//para pegar o usuário que foi selecionado (estudar sobre o metodo encontrado
 
+    /**
+     *
+     * @param u iguala a variável para poder utiliza-la posteriomente
+     */
     public void setU(Usuario u) {
         this.u = u;
     }
 
+    /**
+     *
+     * @return variável com os dados do usuário que sendo pedido
+     */
     public Usuario getU() {
         return this.u;
     }
