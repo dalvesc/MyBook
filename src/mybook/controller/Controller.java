@@ -24,13 +24,15 @@ public class Controller {
     private Usuario userLogado;
     private Usuario u;
     private ControllerArquivo controllerArquivo;
+    private List<Usuario> list;
 
     /**
      * Construtor da classe
      */
     public Controller() {
         controllerArquivo = new ControllerArquivo();
-        controllerArquivo.usuariosCadastrados();
+        list = controllerArquivo.usuariosCadastrados();
+        carregarUsuarios();
         grafo = new Graph();
     }
 
@@ -69,19 +71,20 @@ public class Controller {
     /**
      * Carrega um usuário no programa.
      *
-     * @param password senha do usuário
-     * @param nome nome do usuário
-     * @param email email do usuário
-     * @param nascimento data de nascimento do usuário
-     * @param cidade cidade do usuário
-     * @param telefone telefone do usuário
-     * @param fotoPerfil foto do usuario
      */
-    public void carregarUsuarios(String password, String nome, String email, String nascimento,
-            String cidade, String telefone, String fotoPerfil) {
-        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
-        u.setFotoPerfil(fotoPerfil);
-        grafo.addVertex(u);
+    public void carregarUsuarios() {
+//        System.out.println(u);
+//            System.out.println(u.getCidade());
+//            System.out.println(u.getEmail());
+//            System.out.println(u.getFotoPerfil());
+//            System.out.println(u.getNascimento());
+//            System.out.println(u.getPassword());
+//            System.out.println(u.getTelefone());
+        for (Usuario u : list) {
+        System.out.println(u);
+
+            System.out.println(grafo.addVertex(u));
+        }
     }
 
     /**

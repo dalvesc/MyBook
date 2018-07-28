@@ -25,12 +25,11 @@ public class Facade {
 
         return ctrl.cadastrarUsuario(password, nome, email, nascimento, cidade, telefone);
     }
-
-    public void carregarUsuarios(String password, String nome, String email, String nascimento,
-            String cidade, String telefone, String fotoPerfil) {
-        ctrl.carregarUsuarios(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
-    }
-
+    
+//    public void carregarUsuarios(List<Usuario> list) {
+//        ctrl.carregarUsuarios(list);
+//    }
+   
     public Usuario getUserLogado() {
         return ctrl.getUserLogado();
     }

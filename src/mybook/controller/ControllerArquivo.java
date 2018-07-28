@@ -5,8 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
-import mybook.facade.Facade;
+import mybook.facade.*;
 import mybook.model.*;
 import mybook.view.*;
 
@@ -16,13 +18,15 @@ public class ControllerArquivo {
      * Ler o arquivo de texto com os usuários salvos e salva eles no programa
      * para poderem ser utilizados
      *
+     * @return lista com os usuários cadastrados anteriormente
      */
-    public void usuariosCadastrados() {
+    public List<Usuario> usuariosCadastrados() {
         Facade facade = MyBook.getFacade();
+        List<Usuario> list = new LinkedList();
         String password, nome, email, nascimento, cidade, telefone, fotoPerfil;
         try {
             File arq = new File("usuariosCadastrados.txt");
-           
+
             Scanner scan = new Scanner(new FileReader(arq)).useDelimiter(" |\n");
             while (scan.hasNext()) {
                 password = scan.next();
@@ -32,14 +36,18 @@ public class ControllerArquivo {
                 cidade = scan.next();
                 telefone = scan.next();
                 fotoPerfil = scan.next();
-                
-                facade.carregarUsuarios(password, nome, email, nascimento, cidade, telefone, fotoPerfil);//erro aqui
+                Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
+                u.setFotoPerfil(fotoPerfil);
+                //facade.carregarUsuarios(u);
+                list.add(u);
+
             }
             scan.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
+       // facade.carregarUsuarios(list);
+        return list;
     }
 
     /**
