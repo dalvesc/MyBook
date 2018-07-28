@@ -2,7 +2,7 @@ package mybook.exception;
 
 /**
  * Exceção lançada se não houverem resultados para uma busca.
- * 
+ *
  */
 public class SemResultados extends Exception {
 

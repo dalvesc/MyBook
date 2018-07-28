@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import mybook.exception.*;
+import mybook.facade.*;
 import mybook.view.*;
 
 public class LoginController implements Initializable {
@@ -27,8 +28,8 @@ public class LoginController implements Initializable {
     private PasswordField Password;
     @FXML
     private Label loginInvalido;
-    
-    Controller controller = MyBook.getController();
+
+    Facade facade = MyBook.getFacade();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -40,8 +41,9 @@ public class LoginController implements Initializable {
             public void handle(ActionEvent event) {
 
                 try {
-                    if (controller.fazerLogin(Email.getText(), Password.getText())) {
-                        tela.telaInicial(controller.getUserLogado());
+                    if (facade.fazerLogin(Email.getText(), Password.getText())) {
+                        facade.setU(facade.getUserLogado());
+                        tela.telaInicial();
                         entrarButton.getScene().getWindow().hide();
                     }
                 } catch (LoginInvalido ex) {

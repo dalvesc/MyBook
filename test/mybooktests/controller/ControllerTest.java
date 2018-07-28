@@ -15,7 +15,7 @@ import org.junit.Test;
 import org.junit.Before;
 
 public class ControllerTest {
-   
+
     Controller controller;
     Usuario usuario1, usuario2, usuario3;
 
@@ -96,22 +96,22 @@ public class ControllerTest {
 
         assertTrue(controller.fazerPostagem("mensagem"));
     }
-    
+
     @Test
-    public void testUploadArquivo() throws CadastroInvalido, LoginInvalido, SemArquivos{
+    public void testUploadArquivo() throws CadastroInvalido, LoginInvalido, SemArquivos {
         assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertTrue(controller.fazerLogin("email1", "password1"));
-        
+
         assertTrue(controller.uploadArquivo("caminhoArquivo"));
     }
-    
+
     @Test
-    public void testAmizades() throws CadastroInvalido, LoginInvalido, SemAmigos{
+    public void testAmizades() throws CadastroInvalido, LoginInvalido, SemAmigos {
         assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2"));
         assertTrue(controller.fazerLogin("email1", "password1"));
         assertTrue(controller.fazerAmizade("nome2"));
-        
+
         List<Usuario> list = controller.amizades(usuario1);
         assertTrue(list.contains(usuario2));
     }

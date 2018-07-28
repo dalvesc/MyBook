@@ -1,5 +1,6 @@
 package mybook.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -16,12 +17,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import mybook.exception.*;
+import mybook.facade.*;
 import mybook.model.*;
 import mybook.view.*;
 
 public class PerfilController implements Initializable {
 
     private Usuario u;
+    Image image;
 
     @FXML
     private Button voltar;
@@ -50,21 +53,25 @@ public class PerfilController implements Initializable {
     @FXML
     private Button abrir;
 
-    Controller controller = MyBook.getController();
+    @FXML
+    private Button removerAmigo;
 
-    PerfilController(Usuario u) {
-        this.u = u;
-    }
+    @FXML
+    private Button deletarConta;
+
+    Facade facade = MyBook.getFacade();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         PassarTela tela = new PassarTela();
+        u = facade.getU();
 
         voltar.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                tela.telaInicial(u);
+                facade.setU(u);
+                tela.telaInicial();
                 voltar.getScene().getWindow().hide();
             }
         });
@@ -72,7 +79,7 @@ public class PerfilController implements Initializable {
         ObservableList<Usuario> data = FXCollections.observableArrayList();
 
         try {
-            for (Usuario usu : controller.amizades(u)) {
+            for (Usuario usu : facade.amizades(u)) {
                 data.add(usu);
             }
 
@@ -83,11 +90,43 @@ public class PerfilController implements Initializable {
 
                 @Override
                 public void handle(ActionEvent event) {
-                    tela.telaInicial(amigo);
+                    facade.setU(amigo);
+                    tela.telaInicial();
                 }
             });
         } catch (SemAmigos ex) {
             Logger.getLogger(PerfilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (!u.equals(facade.getUserLogado())) {
+            removerAmigo.setVisible(true);
+            removerAmigo.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    facade.removerAmizade(u.getNome());
+                    facade.setU(facade.getUserLogado());
+                    tela.telaInicial();
+                }
+            });
+        }
+
+        if (u.equals(facade.getUserLogado())) {
+            deletarConta.setVisible(true);
+            deletarConta.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        if (facade.removerConta()) {
+                            tela.login();
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(PerfilController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+            });
         }
 
         nome.setText("Nome: " + u.getNome());
@@ -95,13 +134,9 @@ public class PerfilController implements Initializable {
         nascimento.setText("Nascimento: " + u.getNascimento());
         cidade.setText("Cidade: " + u.getCidade());
         telefone.setText("Telefone: " + u.getTelefone());
-        
-        try {
-            Image image = new Image(u.getFotoPerfil());
-            fotoPefil.setImage(image);
-        } catch (SemImagem ex) {
-            Logger.getLogger(PerfilController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        image = new Image("mybook/imagens/" + u.getFotoPerfil() + ".jpg");
+        fotoPefil.setImage(image);
     }
 
 }

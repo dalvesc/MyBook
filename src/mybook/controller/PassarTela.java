@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mybook.model.*;
 
 /**
  * Metódos que irão servir para passar de uma tela para outra da interface
@@ -41,7 +40,7 @@ public class PassarTela {
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/mybook/view/Inicio.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/Cadastro.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,14 +55,14 @@ public class PassarTela {
     /**
      * Passa para a tela inicial
      */
-    public void telaInicial(Usuario u) {
-        TelaInicialController cons = new TelaInicialController(u);
+    public void telaInicial() {
         Stage stage = new Stage();
         Parent root = null;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/mybook/view/Inicio.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/mybook/view/TelaInicial.fxml"));
         } catch (IOException ex) {
+            System.out.println("aaaaa");
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
@@ -77,9 +76,7 @@ public class PassarTela {
     /**
      * Passa para a tela de perfil
      */
-    public void perfil(Usuario u) {
-        PerfilController cons = new PerfilController(u);
-
+    public void perfil() {
         Stage stage = new Stage();
         Parent root = null;
 
@@ -99,9 +96,7 @@ public class PassarTela {
     /**
      * Passa para a tela de arquivos
      */
-    public void arquivos(Usuario u) {
-        ArquivosController cons = new ArquivosController(u);
-
+    public void arquivos() {
         Stage stage = new Stage();
         Parent root = null;
 
@@ -141,9 +136,7 @@ public class PassarTela {
     /**
      * Passa para a tela de adicionar uma publicação
      */
-    public void adicionarPublicacao(Usuario u) {
-        AdicionarPublicacaoController cons = new AdicionarPublicacaoController(u);
-
+    public void adicionarPublicacao() {
         Stage stage = new Stage();
         Parent root = null;
 

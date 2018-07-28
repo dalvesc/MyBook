@@ -17,14 +17,14 @@ import mybook.exception.*;
 public class Controller {
 
     //falta colocar para ler os arquivos com os usuários já cadastrados
-    //metodo para adicionar um cometario/publicação no amigo
+    //metodo para adicionar um cometario/publicação/arquivo no amigo
+    //botão para adicionar arquivo
     //facade
-    //botão remover amizade
-    //problema na tela inicio
-    //metodo para pegar publicações/arquivos de determinado usuário
+    //amizade não funcionando direito
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario userLogado;
+    private Usuario u;
 
     /**
      * Construtor da classe
@@ -118,7 +118,7 @@ public class Controller {
      * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
      */
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
-        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "fotoPerfil");
+        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone", "eu");
         grafo.addVertex(d);
         itr = grafo.itrVertices();
 
@@ -130,16 +130,6 @@ public class Controller {
             }
         }
         throw new LoginInvalido();
-    }
-
-    //depois apagar
-    public void imprimi() {
-        itr = grafo.itrVertices();
-
-        while (itr.hasNext()) {
-            Usuario u = itr.next();
-            System.out.println(u);
-        }
     }
 
     /**
@@ -215,5 +205,13 @@ public class Controller {
         Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx", "xx");
 
         return (Usuario) grafo.getVertex(aux);
-    }//para pegar o usuário que foi selecionado (estudar sobre o metodo encontrado)
+    }//para pegar o usuário que foi selecionado (estudar sobre o metodo encontrado
+
+    public void setU(Usuario u) {
+        this.u = u;
+    }
+
+    public Usuario getU() {
+        return this.u;
+    }
 }

@@ -108,9 +108,9 @@ public class Graph implements IGraph {
     public boolean contains(Object o) {
         return vertices.containsKey(o);
     }
-    
-    public Object getVertex(Object key){
+
+    public Object getVertex(Object key) {
         return vertices.get(key).data;
-}
-    
+    }
+
 }

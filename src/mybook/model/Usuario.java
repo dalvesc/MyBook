@@ -153,10 +153,9 @@ public class Usuario {
     /**
      *
      * @return endereço da foto do usuário
-     * @throws mybook.exception.SemImagem Caso o usuário não tenha uma imagem
-     * válida
+     *
      */
-    public String getFotoPerfil() throws SemImagem {
+    public String getFotoPerfil() {
         return this.fotoPerfil;
     }
 

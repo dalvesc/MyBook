@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import mybook.exception.SemArquivos;
+import mybook.facade.*;
 import mybook.model.*;
 import mybook.view.*;
 
@@ -27,20 +28,19 @@ public class ArquivosController implements Initializable {
     @FXML
     private ListView<String> arquivos;
 
-    ArquivosController(Usuario u) {
-        this.u = u;
-    }
-
-    Controller controller = MyBook.getController();
+    Facade facade = MyBook.getFacade();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         PassarTela tela = new PassarTela();
+        u = facade.getU();
+
         voltar.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                tela.telaInicial(u);
+                facade.setU(u);
+                tela.telaInicial();
                 voltar.getScene().getWindow().hide();
             }
         });

@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import mybook.exception.SemResultados;
+import mybook.facade.*;
 import mybook.model.*;
 import mybook.view.*;
 
@@ -45,7 +46,7 @@ public class BuscarAmigosController implements Initializable {
     @FXML
     private Button adicionar;
 
-    Controller controller = MyBook.getController();
+    Facade facade = MyBook.getFacade();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -54,7 +55,8 @@ public class BuscarAmigosController implements Initializable {
         voltar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                tela.telaInicial(controller.getUserLogado());
+                facade.setU(facade.getUserLogado());
+                tela.telaInicial();
                 voltar.getScene().getWindow().hide();
             }
         });
@@ -65,7 +67,7 @@ public class BuscarAmigosController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    list = controller.buscarUsuario(busca.getText());
+                    list = facade.buscarUsuario(busca.getText());
                     selecionar.setText("Selecione o usuário que deseja adicionar");
                     for (Usuario usu : list) {
                         data.add(usu);
@@ -75,10 +77,9 @@ public class BuscarAmigosController implements Initializable {
                     Usuario amigo = buscados.getSelectionModel().getSelectedItem();
                     adicionar.setVisible(true);
                     adicionar.setOnAction(new EventHandler<ActionEvent>() {
-
                         @Override
                         public void handle(ActionEvent event) {
-                            controller.fazerAmizade(amigo.getNome());
+                            facade.fazerAmizade(amigo.getNome());
                         }
                     });
                 } catch (SemResultados ex) {

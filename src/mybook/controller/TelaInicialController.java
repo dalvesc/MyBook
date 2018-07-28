@@ -13,12 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import mybook.exception.*;
+import mybook.facade.*;
 import mybook.model.*;
 import mybook.view.*;
 
 public class TelaInicialController implements Initializable {
 
-    private Usuario u;
+    static private Usuario u;
     @FXML
     private Button arquivos;
 
@@ -37,16 +38,16 @@ public class TelaInicialController implements Initializable {
     @FXML
     private Button adicionarPublicacao;
 
-    TelaInicialController(Usuario u) {
-        this.u = u;
-    }
+    @FXML
+    private Button voltarAmigo;
 
-    Controller controller = MyBook.getController();
+    Facade facade = MyBook.getFacade();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         PassarTela tela = new PassarTela();
+        u = facade.getU();
 
         sair.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -59,14 +60,16 @@ public class TelaInicialController implements Initializable {
         arquivos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                tela.arquivos(u);
+                tela.arquivos();
+                arquivos.getScene().getWindow().hide();
             }
         });
 
         perfil.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                tela.perfil(u);
+                tela.perfil();
+                perfil.getScene().getWindow().hide();
             }
         });
 
@@ -81,9 +84,21 @@ public class TelaInicialController implements Initializable {
         adicionarPublicacao.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                tela.adicionarPublicacao(u);
+                tela.adicionarPublicacao();
+                adicionarPublicacao.getScene().getWindow().hide();
             }
         });
+
+        if (!u.equals(facade.getUserLogado())) {
+            voltarAmigo.setVisible(true);
+            voltarAmigo.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    facade.setU(facade.getUserLogado());
+                    tela.telaInicial();
+                }
+            });
+        }
 
         ObservableList<String> data = FXCollections.observableArrayList();
 

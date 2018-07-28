@@ -1,7 +1,10 @@
 package mybook.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import mybook.exception.*;
+import mybook.facade.*;
 import mybook.view.*;
 
 public class CadastroController implements Initializable {
@@ -35,7 +39,7 @@ public class CadastroController implements Initializable {
     @FXML
     private Button voltar;
 
-    Controller controller = MyBook.getController();
+    Facade facade = MyBook.getFacade();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,13 +49,15 @@ public class CadastroController implements Initializable {
         Cadastrarbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String foto = "imagens: " +fotoPerfil.getText();
+                String foto = "imagens: " + fotoPerfil.getText();
                 try {
-                    controller.cadastrarUsuario(password.getText(),
+                    facade.cadastrarUsuario(password.getText(),
                             nome.getText(), email.getText(), nascimento.getText(),
                             cidade.getText(), telefone.getText(), foto);
                 } catch (CadastroInvalido ex) {
                     jaCadastrado.setText("Email já cadastrado");
+                } catch (IOException ex) {
+                    Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 tela.login();
                 Cadastrarbutton.getScene().getWindow().hide();
