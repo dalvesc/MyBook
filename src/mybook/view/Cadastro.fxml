@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -11,7 +12,10 @@
         <Button fx:id="Cadastrarbutton" layoutX="167.0" layoutY="269.0" text="Cadastre-se">
          <font>
             <Font size="14.0" />
-         </font></Button>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="148.0" layoutY="14.0" text="MyBook" textFill="#18cd00">
          <font>
             <Font size="36.0" />
@@ -29,7 +33,10 @@
          </font>
       </Label>
       <TextField fx:id="fotoPerfil" layoutX="23.0" layoutY="231.0" prefHeight="25.0" prefWidth="149.0" promptText="Nome da imagem" />
-      <Button fx:id="voltar" layoutX="23.0" layoutY="16.0" mnemonicParsing="false" text="Voltar" />
+      <Button fx:id="voltar" layoutX="23.0" layoutY="16.0" mnemonicParsing="false" text="Voltar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="186.0" layoutY="235.0" text="Coloque a foto na pasta &quot;imagens&quot;" />
     </children>
 </AnchorPane>

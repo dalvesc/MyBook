@@ -66,6 +66,7 @@ public class Facade {
     }
 
     public void setU(Usuario usuario) {
+        ctrl.setU(usuario);
     }
 
     public Usuario getU() {

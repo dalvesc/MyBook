@@ -11,14 +11,14 @@ import org.junit.Before;
 public class GraphTest {
 
     Graph grafo;
-    Object usuario1, usuario2;
+    Object usuario1, usuario2, usuario3;
 
     @Before
     public void setUp() throws Exception {
         grafo = new Graph();
         usuario1 = new Usuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1");
         usuario2 = new Usuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2");
-
+        usuario3 = new Usuario("password3", "nome3", "email1", "nascimento3", "cidade3", "telefone3", "fotoPerfil3");
     }
 
     @Test
@@ -33,6 +33,7 @@ public class GraphTest {
     public void testAddVertex() {
         assertTrue(grafo.addVertex(usuario1));
         assertTrue(grafo.addVertex(usuario2));
+        assertFalse(grafo.addVertex(usuario3));
     }
 
     @Test
@@ -120,6 +121,15 @@ public class GraphTest {
         assertTrue(iterator.hasNext());
         assertEquals(usuario1, iterator.next());
         assertFalse(iterator.hasNext());
+    }
 
+    @Test
+    public void testContains() {
+        assertTrue(grafo.addVertex(usuario1));
+        assertTrue(grafo.addVertex(usuario2));
+        assertEquals(2, grafo.numVertices());
+
+        assertTrue(grafo.contains(usuario1));
+        assertTrue(grafo.contains(usuario2));
     }
 }

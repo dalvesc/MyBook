@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,7 +25,7 @@ import mybook.view.*;
 public class BuscarAmigosController implements Initializable {
 
     List<Usuario> list = new LinkedList();
-
+    private Usuario amigo;
     @FXML
     private Button voltar;
 
@@ -71,14 +72,15 @@ public class BuscarAmigosController implements Initializable {
                     }
 
                     buscados.setItems(data);
-                    Usuario amigo = buscados.getSelectionModel().getSelectedItem();
+                    buscados.getSelectionModel().selectedItemProperty().addListener(
+                            (observable, oldValue, newValue) -> setAmigo(newValue));
                     adicionar.setVisible(true);
-                    //adicionar
                     adicionar.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            System.out.println(amigo);
-                            facade.fazerAmizade(amigo.getNome());
+                            if (facade.fazerAmizade(amigo.getNome())) {
+                                selecionar.setText("Adicionado");
+                            }
                         }
                     });
                 } catch (SemResultados ex) {
@@ -88,5 +90,9 @@ public class BuscarAmigosController implements Initializable {
             }
         });
 
+    }
+
+    public void setAmigo(Usuario amigo) {
+        this.amigo = amigo;
     }
 }

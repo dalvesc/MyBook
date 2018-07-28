@@ -49,17 +49,21 @@ public class CadastroController implements Initializable {
         Cadastrarbutton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                boolean cadastrou = true;
                 try {
                     facade.cadastrarUsuario(password.getText(),
                             nome.getText(), email.getText(), nascimento.getText(),
                             cidade.getText(), telefone.getText(), fotoPerfil.getText());
                 } catch (CadastroInvalido ex) {
                     jaCadastrado.setText("Email já cadastrado");
+                    cadastrou = false;
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                tela.login();
-                Cadastrarbutton.getScene().getWindow().hide();
+                if (cadastrou) {
+                    tela.login();
+                    Cadastrarbutton.getScene().getWindow().hide();
+                }
             }
         });
 
