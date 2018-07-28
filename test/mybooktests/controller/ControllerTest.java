@@ -94,7 +94,7 @@ public class ControllerTest {
         assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertTrue(controller.fazerLogin("email1", "password1"));
 
-        assertTrue(controller.fazerPostagem("mensagem"));
+        assertTrue(controller.fazerPostagem(usuario1, "mensagem"));
     }
 
     @Test

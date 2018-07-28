@@ -1,5 +1,6 @@
 package mybook.facade;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import mybook.controller.*;
@@ -48,11 +49,11 @@ public class Facade {
         return ctrl.buscarUsuario(nome);
     }
 
-    public boolean fazerPostagem(String mensagem) throws SemPublicacoes {
-        return ctrl.fazerPostagem(mensagem);
+    public boolean fazerPostagem(Usuario u, String mensagem) throws SemPublicacoes {
+        return ctrl.fazerPostagem(u, mensagem);
     }
 
-    public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos {
+    public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos, FileNotFoundException {
         return ctrl.uploadArquivo(caminhoArquivo);
     }
 

@@ -1,6 +1,7 @@
 package mybook.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -17,9 +18,6 @@ import mybook.exception.*;
 public class Controller {
 
     //falta colocar para ler os arquivos com os usuários já cadastrados
-    //metodo para adicionar um cometario/publicação/arquivo no amigo
-    //botão para adicionar arquivo
-    //facade
     //amizade não funcionando direito
     private Graph grafo;
     private Iterator<Usuario> itr;
@@ -165,8 +163,8 @@ public class Controller {
      * @throws mybook.exception.SemPublicacoes caso o usuário não tenha
      * publicações
      */
-    public boolean fazerPostagem(String mensagem) throws SemPublicacoes {
-        return userLogado.getPostagens().add(mensagem);
+    public boolean fazerPostagem(Usuario u, String mensagem) throws SemPublicacoes {
+        return u.getPostagens().add(mensagem);
     }
 
     /**
@@ -175,8 +173,9 @@ public class Controller {
      * @param caminhoArquivo caminho do arquivo.
      * @return "true" se a operação for bem sucedida e "false" se não.
      * @throws mybook.exception.SemArquivos caso o usuário não tenha arquivos
+     * @throws java.io.FileNotFoundException caso o arquivo não tenha sido encontrado
      */
-    public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos {
+    public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos, FileNotFoundException {
         return userLogado.getArquivos().add(new File(caminhoArquivo));
     }
 
