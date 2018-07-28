@@ -18,8 +18,7 @@ public class ControllerArquivo {
      *
      */
     public void usuariosCadastrados() {
-        //Facade facade = MyBook.getFacade();
-                Facade facade = new Facade();
+        Facade facade = MyBook.getFacade();
 
         try {
             File arq = new File("usuariosCadastrados.txt");
@@ -34,9 +33,7 @@ public class ControllerArquivo {
                 cidade = scan.next();
                 telefone = scan.next();
                 fotoPerfil = scan.next();
-                if (fotoPerfil.equals("null")) {
-                    fotoPerfil = "usuario";
-                }
+                
                 facade.carregarUsuarios(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
             }
             scan.close();
