@@ -114,11 +114,11 @@ public class Controller {
      * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
      */
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
-        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone");
-        Usuario a = new Usuario("5221", "a", "ffff", "nascimento1", "cidade1", "telefone1");
-        grafo.addVertex(d);
-        grafo.addVertex(a);
-        grafo.addEdge(d, a);
+//        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone");
+//        Usuario a = new Usuario("5221", "a", "ffff", "nascimento1", "cidade1", "telefone1");
+//        grafo.addVertex(d);
+//        grafo.addVertex(a);
+//        grafo.addEdge(d, a);
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {

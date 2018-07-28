@@ -151,9 +151,15 @@ public class PerfilController implements Initializable {
         cidade.setText("Cidade: " + u.getCidade());
         telefone.setText("Telefone: " + u.getTelefone());
         if (u.getFotoPerfil() != null) {
-            image = new Image("/mybook/imagens/" + u.getFotoPerfil() + ".jpg");
-            fotoPefil.setImage(image);
+            try {
+                image = new Image("/mybook/imagens/" + u.getFotoPerfil() + ".jpg");
+            } catch (IllegalArgumentException ex) {
+                System.out.println("aaaaaa");
+                u.setFotoPerfil("usuario");
+                image = new Image("/mybook/imagens/" + u.getFotoPerfil() + ".jpg");
+            }
         }
+        fotoPefil.setImage(image);
     }
 
     public void setAmigo(Usuario amigo) {

@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import mybook.controller.*;
 import mybook.facade.*;
 
 /**
@@ -31,16 +32,16 @@ import mybook.facade.*;
 public class MyBook extends Application {
 
     static Facade facade = new Facade();
+    ControllerArquivo controllerArquivo;
 
     @Override
     public void start(Stage stage) throws Exception {
+        controllerArquivo = new ControllerArquivo();
         Parent entrar = FXMLLoader.load(getClass().getResource("Login.fxml"));
-
         Scene scene = new Scene(entrar);
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Login");
-
     }
 
     /**
