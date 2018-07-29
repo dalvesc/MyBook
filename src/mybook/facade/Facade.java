@@ -32,6 +32,7 @@ public class Facade {
             String cidade, String telefone, String fotoPerfil) throws CadastroInvalido, IOException {
 
         Usuario u = ctrl.cadastrarUsuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
+        grafo = ctrl.getGrafo();
         ctrlSerial.gravar(grafo);
         return u;
     }

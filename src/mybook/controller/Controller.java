@@ -46,6 +46,7 @@ public class Controller {
      * @param nascimento data de nascimento do usuário
      * @param cidade cidade do usuário
      * @param telefone telefone do usuário
+     * @param fotoPerfil foto do usuário
      * @return usuário que foi cadastrado
      * @throws CadastroInvalido caso o email já tenha sido cadastrado.
      */

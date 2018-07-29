@@ -29,7 +29,6 @@ public class ControllerSerializar {
     public void gravar(Graph obj) throws FileNotFoundException, IOException {
         FileOutputStream fileoutput = new FileOutputStream("grafo.ser");
         ObjectOutputStream objectoutput = new ObjectOutputStream(fileoutput);
-
         objectoutput.writeObject(obj);
         objectoutput.close();
     }
@@ -44,7 +43,7 @@ public class ControllerSerializar {
     public Graph recuperar() throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fileinput = new FileInputStream("grafo.ser");
         ObjectInputStream objectinput = new ObjectInputStream(fileinput);
-       
+
         obj = (Graph) objectinput.readObject();
         objectinput.close();
         return obj;
