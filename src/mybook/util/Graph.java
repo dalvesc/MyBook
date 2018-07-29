@@ -5,12 +5,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.io.Serializable;
 
-public class Graph implements IGraph {
+public class Graph implements IGraph, Serializable {
 
     private Map<Object, Vertex> vertices;
 
-    private class Vertex {
+    private class Vertex implements Serializable{
 
         private Object data;
         private Set adjacencies;

@@ -6,6 +6,8 @@ import java.util.List;
 import mybook.controller.*;
 import mybook.exception.*;
 import mybook.model.Usuario;
+import mybook.util.Graph;
+import mybook.alimentasistema.AlimentaSistema;
 
 /**
  * Classe para chamar os métodos do controlador.
@@ -15,19 +17,28 @@ import mybook.model.Usuario;
 public class Facade {
 
     private Controller ctrl;
+    private ControllerSerializar ctrlSerial;
+    public Graph grafo;    
 
-    public Facade() {
+    public Facade() throws IOException, FileNotFoundException, ClassNotFoundException, CadastroInvalido, LoginInvalido {
         ctrl = new Controller();
+        grafo = ctrl.getGrafo();
+        ctrlSerial = new ControllerSerializar(grafo);
+        ctrl.setGrafo(ctrlSerial.recuperar());
+        AlimentaSistema as = new AlimentaSistema(ctrl);        
     }
 
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone) throws CadastroInvalido, IOException {
+            String cidade, String telefone, String fotoPerfil) throws CadastroInvalido, IOException {
 
-        return ctrl.cadastrarUsuario(password, nome, email, nascimento, cidade, telefone);
+        Usuario u = ctrl.cadastrarUsuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
+        ctrlSerial.gravar(grafo);
+        return u;
     }
     
-//    public void carregarUsuarios(List<Usuario> list) {
-//        ctrl.carregarUsuarios(list);
+//    public void carregarUsuarios(String password, String nome, String email, String nascimento,
+//            String cidade, String telefone, String fotoPerfil) {
+//        ctrl.carregarUsuarios(password, nome, email, nascimento, cidade, telefone, fotoPerfil);  
 //    }
    
     public Usuario getUserLogado() {
@@ -35,15 +46,21 @@ public class Facade {
     }
 
     public boolean removerConta() throws IOException {
-        return ctrl.removerConta();
+        boolean r = ctrl.removerConta();
+        ctrlSerial.gravar(grafo);
+        return r;
     }
 
-    public boolean fazerAmizade(String outroUser) {
-        return ctrl.fazerAmizade(outroUser);
+    public boolean fazerAmizade(String outroUser) throws IOException {
+        boolean r = ctrl.fazerAmizade(outroUser);
+        ctrlSerial.gravar(grafo);
+        return r;
     }
 
-    public boolean removerAmizade(String outroUser) {
-        return ctrl.removerAmizade(outroUser);
+    public boolean removerAmizade(String outroUser) throws IOException {
+        boolean r = ctrl.removerAmizade(outroUser);
+        ctrlSerial.gravar(grafo);
+        return r;
     }
 
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
@@ -54,12 +71,16 @@ public class Facade {
         return ctrl.buscarUsuario(nome);
     }
 
-    public boolean fazerPostagem(Usuario u, String mensagem) throws SemPublicacoes {
-        return ctrl.fazerPostagem(u, mensagem);
+    public boolean fazerPostagem(Usuario u, String mensagem) throws SemPublicacoes, IOException {
+        boolean r = ctrl.fazerPostagem(u, mensagem);
+        ctrlSerial.gravar(grafo);
+        return r;
     }
 
-    public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos, FileNotFoundException {
-        return ctrl.uploadArquivo(caminhoArquivo);
+    public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos, FileNotFoundException, IOException {
+        boolean r = ctrl.uploadArquivo(caminhoArquivo);
+        ctrlSerial.gravar(grafo);
+        return r;
     }
 
     public Usuario obterUsuario(String email) {

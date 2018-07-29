@@ -25,7 +25,7 @@
       <TextField fx:id="nome" layoutX="23.0" layoutY="106.0" promptText="Nome" />
       <TextField fx:id="email" layoutX="261.0" layoutY="149.0" promptText="Email" />
       <TextField fx:id="nascimento" layoutX="23.0" layoutY="149.0" promptText="Data de nascimento" />
-      <TextField fx:id="cidade" layoutX="261.0" layoutY="191.0" promptText="Cidade(Sem espaços)" />
+      <TextField fx:id="cidade" layoutX="261.0" layoutY="191.0" promptText="Cidade" />
       <TextField fx:id="telefone" layoutX="23.0" layoutY="191.0" promptText="Telefone" />
       <Label fx:id="jaCadastrado" layoutX="276.0" layoutY="271.0" prefHeight="25.0" prefWidth="118.0">
          <font>

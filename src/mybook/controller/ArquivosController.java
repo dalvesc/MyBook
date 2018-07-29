@@ -2,6 +2,7 @@ package mybook.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -81,6 +82,8 @@ public class ArquivosController implements Initializable {
                         Logger.getLogger(ArquivosController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (FileNotFoundException ex) {
                         caminhoErrado.setText("Caminho errado");
+                        Logger.getLogger(ArquivosController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
                         Logger.getLogger(ArquivosController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }

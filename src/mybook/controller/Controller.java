@@ -18,21 +18,16 @@ import mybook.exception.*;
  */
 public class Controller {
 
-    //falta colocar para ler os arquivos com os usuários já cadastrados
     private Graph grafo;
     private Iterator<Usuario> itr;
     private Usuario userLogado;
     private Usuario u;
-    private ControllerArquivo controllerArquivo;
-    private List<Usuario> list;
 
     /**
      * Construtor da classe
      */
     public Controller() {
-        controllerArquivo = new ControllerArquivo();
-        list = controllerArquivo.usuariosCadastrados();
-        carregarUsuarios();
+        
         grafo = new Graph();
     }
 
@@ -57,34 +52,14 @@ public class Controller {
      * @throws CadastroInvalido caso o email já tenha sido cadastrado.
      */
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone) throws CadastroInvalido {
-        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
+            String cidade, String telefone, String fotoPerfil) throws CadastroInvalido {
+        Usuario aux = new Usuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
 
-        if (grafo.addVertex(u)) {
-            controllerArquivo.cadastrarUsuario(u);
-            return u;
+        if (grafo.addVertex(aux)) {
+            return aux;
         }
 
         throw new CadastroInvalido(email);
-    }
-
-    /**
-     * Carrega um usuário no programa.
-     *
-     */
-    public void carregarUsuarios() {
-//        System.out.println(u);
-//            System.out.println(u.getCidade());
-//            System.out.println(u.getEmail());
-//            System.out.println(u.getFotoPerfil());
-//            System.out.println(u.getNascimento());
-//            System.out.println(u.getPassword());
-//            System.out.println(u.getTelefone());
-        for (Usuario u : list) {
-        System.out.println(u);
-
-            System.out.println(grafo.addVertex(u));
-        }
     }
 
     /**
@@ -139,18 +114,13 @@ public class Controller {
      * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
      */
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
-//        Usuario d = new Usuario("5221", "nome", "danco", "nascimento", "cidade", "telefone");
-//        Usuario a = new Usuario("5221", "a", "ffff", "nascimento1", "cidade1", "telefone1");
-//        grafo.addVertex(d);
-//        grafo.addVertex(a);
-//        grafo.addEdge(d, a);
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
-            Usuario u = itr.next();
-            if (u.getEmail().equals(email) && u.getPassword().equals(senha)) {
-                userLogado = u;
-                setU(u);
+           Usuario aux = itr.next();
+            if (aux.getEmail().equals(email) && aux.getPassword().equals(senha)) {
+                userLogado = aux;
+                setU(aux);
                 return true;
             }
         }
@@ -172,9 +142,9 @@ public class Controller {
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
-            Usuario u = itr.next();
-            if (u.getNome().equalsIgnoreCase(nomeUser)) {
-                usuariosBuscados.add(u);
+            Usuario aux = itr.next();
+            if (aux.getNome().equalsIgnoreCase(nomeUser)) {
+                usuariosBuscados.add(aux);
             }
         }
 
@@ -235,7 +205,7 @@ public class Controller {
 
         itr = grafo.itrVertices();
 
-        Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx");
+        Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx", "xx");
 
         return (Usuario) grafo.getVertex(aux);
     }
@@ -255,4 +225,14 @@ public class Controller {
     public Usuario getU() {
         return this.u;
     }
+
+    public Graph getGrafo(){
+        return grafo;
+}
+
+    public void setGrafo(Graph grafo) {
+        this.grafo = grafo;
+    }
+    
+    
 }

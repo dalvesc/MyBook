@@ -1,5 +1,6 @@
 package mybook.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -50,6 +51,8 @@ public class AdicionarPublicacaoController implements Initializable {
                 try {
                     facade.fazerPostagem(u, mensagem.getText());
                 } catch (SemPublicacoes ex) {
+                    Logger.getLogger(AdicionarPublicacaoController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
                     Logger.getLogger(AdicionarPublicacaoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 tela.telaInicial();

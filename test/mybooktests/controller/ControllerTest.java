@@ -23,14 +23,14 @@ public class ControllerTest {
     @Before
     public void setUp() throws Exception {
         controller = new Controller();
-        usuario1 = new Usuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1");
-        usuario2 = new Usuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2");
-        usuario3 = new Usuario("password2", "nome1", "email2", "nascimento2", "cidade2", "telefone2");
+        usuario1 = new Usuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1");
+        usuario2 = new Usuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2");
+        usuario3 = new Usuario("password2", "nome1", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil3");
     }
 
     @Test
     public void testGetUserLogado() throws CadastroInvalido, LoginInvalido {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertTrue(controller.fazerLogin("email1", "password1"));
 
         assertEquals(usuario1, controller.getUserLogado());
@@ -38,13 +38,13 @@ public class ControllerTest {
 
     @Test
     public void testCadastrarUsuario() throws CadastroInvalido {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
-        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
+        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2"));
     }
 
     @Test
     public void testRemoverConta() throws CadastroInvalido, LoginInvalido {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertTrue(controller.fazerLogin("email1", "password1"));
 
         assertTrue(controller.removerConta());
@@ -52,8 +52,8 @@ public class ControllerTest {
 
     @Test
     public void testFazerAmizade() throws CadastroInvalido, LoginInvalido {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
-        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
+        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2"));
         assertTrue(controller.fazerLogin("email1", "password1"));
 
         assertTrue(controller.fazerAmizade("nome2"));
@@ -61,8 +61,8 @@ public class ControllerTest {
 
     @Test
     public void testRemoverAmizade() throws CadastroInvalido, LoginInvalido {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
-        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
+        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2"));
         assertTrue(controller.fazerLogin("email1", "password1"));
 
         assertTrue(controller.fazerAmizade("nome2"));
@@ -73,8 +73,8 @@ public class ControllerTest {
 
     @Test
     public void testFazerLogin() throws CadastroInvalido, LoginInvalido {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
-        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
+        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2"));
 
         assertTrue(controller.fazerLogin("email1", "password1"));
         assertTrue(controller.fazerLogin("email2", "password2"));
@@ -82,8 +82,8 @@ public class ControllerTest {
 
     @Test
     public void testBuscarUsuario() throws CadastroInvalido, SemResultados {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
-        assertEquals(usuario3, controller.cadastrarUsuario("password2", "nome1", "email2", "nascimento2", "cidade2", "telefone2"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
+        assertEquals(usuario3, controller.cadastrarUsuario("password2", "nome1", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2"));
 
         List<Usuario> list = controller.buscarUsuario("nome1");
         assertTrue(list.contains(usuario1));
@@ -92,7 +92,7 @@ public class ControllerTest {
 
     @Test
     public void testFazerPostagem() throws CadastroInvalido, LoginInvalido, SemPublicacoes {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertTrue(controller.fazerLogin("email1", "password1"));
 
         assertTrue(controller.fazerPostagem(usuario1, "mensagem"));
@@ -100,7 +100,7 @@ public class ControllerTest {
 
     @Test
     public void testUploadArquivo() throws CadastroInvalido, LoginInvalido, SemArquivos, FileNotFoundException {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
         assertTrue(controller.fazerLogin("email1", "password1"));
 
         assertTrue(controller.uploadArquivo("caminhoArquivo"));
@@ -108,8 +108,8 @@ public class ControllerTest {
 
     @Test
     public void testAmizades() throws CadastroInvalido, LoginInvalido, SemAmigos {
-        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1"));
-        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2"));
+        assertEquals(usuario1, controller.cadastrarUsuario("password1", "nome1", "email1", "nascimento1", "cidade1", "telefone1", "fotoPerfil1"));
+        assertEquals(usuario2, controller.cadastrarUsuario("password2", "nome2", "email2", "nascimento2", "cidade2", "telefone2", "fotoPerfil2"));
         assertTrue(controller.fazerLogin("email1", "password1"));
         assertTrue(controller.fazerAmizade("nome2"));
 

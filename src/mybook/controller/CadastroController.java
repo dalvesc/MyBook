@@ -51,7 +51,7 @@ public class CadastroController implements Initializable {
                 try {
                     facade.cadastrarUsuario(password.getText(),
                             nome.getText(), email.getText(), nascimento.getText(),
-                            cidade.getText(), telefone.getText());
+                            cidade.getText(), telefone.getText(), "null");
                 } catch (CadastroInvalido ex) {
                     jaCadastrado.setText("Email já cadastrado");
                     cadastrou = false;
