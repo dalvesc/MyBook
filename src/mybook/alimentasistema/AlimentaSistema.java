@@ -2,9 +2,8 @@ package mybook.alimentasistema;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import mybook.controller.Controller;
-import mybook.exception.CadastroInvalido;
-import mybook.exception.LoginInvalido;
+import mybook.controller.*;
+import mybook.exception.*;
 
 /**
  *Classe para "alimentar" o programa com alguns usuários

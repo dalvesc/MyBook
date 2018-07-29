@@ -8,8 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mybook.exception.CadastroInvalido;
-import mybook.exception.LoginInvalido;
+import mybook.exception.*;
 import mybook.facade.*;
 
 /**

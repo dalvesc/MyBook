@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import mybook.util.Graph;
+import mybook.util.*;
 
 /**
  * Classe para serializar os dados
