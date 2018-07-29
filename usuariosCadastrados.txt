@@ -1,5 +1,0 @@
-123 Gabriela Nunes 123@gmail.com 23/09/1999 fsa 3225-2215 null
-666 Lu 666@gmail.com 666 ssa 666 null
-123 gabriela 123@gmail.com 123 fsa 123 null
-777 god 777@gmail.com 777 fsa 777 null
-666 lu 666@gmail.com 666 fsa 666 null
