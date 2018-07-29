@@ -49,7 +49,7 @@ public class AdicionarPublicacaoController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    facade.fazerPostagem(u, mensagem.getText());
+                    facade.fazerPostagem(u,facade.getUserLogado() + ": " + mensagem.getText());
                 } catch (SemPublicacoes ex) {
                     Logger.getLogger(AdicionarPublicacaoController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {

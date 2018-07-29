@@ -82,18 +82,20 @@ public class PerfilController implements Initializable {
             }
 
             amigos.setItems(data);
-            amigos.getSelectionModel().selectedItemProperty().addListener(
-                    (observable, oldValue, newValue) -> setAmigo(newValue));
-            abrir.setVisible(true);
-            abrir.setOnAction(new EventHandler<ActionEvent>() {
+            if (u.equals(facade.getUserLogado())) {
+                amigos.getSelectionModel().selectedItemProperty().addListener(
+                        (observable, oldValue, newValue) -> setAmigo(newValue));
+                abrir.setVisible(true);
+                abrir.setOnAction(new EventHandler<ActionEvent>() {
 
-                @Override
-                public void handle(ActionEvent event) {
-                    facade.setU(amigo);
-                    tela.telaInicial();
-                    abrir.getScene().getWindow().hide();
-                }
-            });
+                    @Override
+                    public void handle(ActionEvent event) {
+                        facade.setU(amigo);
+                        tela.telaInicial();
+                        abrir.getScene().getWindow().hide();
+                    }
+                });
+            }
         } catch (SemAmigos ex) {
             Logger.getLogger(PerfilController.class.getName()).log(Level.SEVERE, null, ex);
         }
