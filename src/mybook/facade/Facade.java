@@ -18,27 +18,22 @@ public class Facade {
 
     private Controller ctrl;
     private ControllerSerializar ctrlSerial;
-    public Graph grafo;    
+    public Graph grafo;
 
     public Facade() throws IOException, FileNotFoundException, ClassNotFoundException, CadastroInvalido, LoginInvalido {
         ctrl = new Controller();
         grafo = ctrl.getGrafo();
         ctrlSerial = new ControllerSerializar(grafo);
         ctrl.setGrafo(ctrlSerial.recuperar());
-        AlimentaSistema as = new AlimentaSistema();        
+        AlimentaSistema as = new AlimentaSistema(ctrl);
     }
 
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone) throws CadastroInvalido, IOException {
+            String cidade, String telefone, String fotoPerfil) throws CadastroInvalido, IOException {
 
-        Usuario u = ctrl.cadastrarUsuario(password, nome, email, nascimento, cidade, telefone);
+        Usuario u = ctrl.cadastrarUsuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
         ctrlSerial.gravar(grafo);
         return u;
-    }
-
-    public void carregarUsuarios(String password, String nome, String email, String nascimento,
-            String cidade, String telefone, String fotoPerfil) {
-        ctrl.carregarUsuarios(password, nome, email, nascimento, cidade, telefone, fotoPerfil);  
     }
 
     public Usuario getUserLogado() {
@@ -81,10 +76,6 @@ public class Facade {
         boolean r = ctrl.uploadArquivo(caminhoArquivo);
         ctrlSerial.gravar(grafo);
         return r;
-    }
-
-    public Usuario obterUsuario(String email) {
-        return ctrl.obterUsuario(email);
     }
 
     public List<Usuario> amizades(Usuario usuario) throws SemAmigos {

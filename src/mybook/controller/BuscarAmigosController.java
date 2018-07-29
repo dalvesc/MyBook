@@ -1,5 +1,6 @@
 package mybook.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -78,8 +79,12 @@ public class BuscarAmigosController implements Initializable {
                     adicionar.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            if (facade.fazerAmizade(amigo.getNome())) {
-                                selecionar.setText("Adicionado");
+                            try {
+                                if (facade.fazerAmizade(amigo.getNome())) {
+                                    selecionar.setText("Adicionado");
+                                }
+                            } catch (IOException ex) {
+                                Logger.getLogger(BuscarAmigosController.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
                     });

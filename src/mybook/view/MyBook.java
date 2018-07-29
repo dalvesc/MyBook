@@ -1,16 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mybook.view;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mybook.controller.*;
+import mybook.exception.CadastroInvalido;
+import mybook.exception.LoginInvalido;
 import mybook.facade.*;
 
 /**
@@ -31,8 +30,8 @@ import mybook.facade.*;
  */
 public class MyBook extends Application {
 
-    static Facade facade = new Facade();
-    
+    static Facade facade;
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent entrar = FXMLLoader.load(getClass().getResource("Login.fxml"));
@@ -58,6 +57,17 @@ public class MyBook extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        try {
+            facade = new Facade();
+        } catch (IOException ex) {
+            Logger.getLogger(MyBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MyBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CadastroInvalido ex) {
+            Logger.getLogger(MyBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LoginInvalido ex) {
+            Logger.getLogger(MyBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
         launch(args);
     }
 

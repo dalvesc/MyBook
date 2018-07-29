@@ -104,7 +104,11 @@ public class PerfilController implements Initializable {
 
                 @Override
                 public void handle(ActionEvent event) {
-                    facade.removerAmizade(u.getNome());
+                    try {
+                        facade.removerAmizade(u.getNome());
+                    } catch (IOException ex) {
+                        Logger.getLogger(PerfilController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     facade.setU(facade.getUserLogado());
                     tela.telaInicial();
                     removerAmigo.getScene().getWindow().hide();
@@ -154,7 +158,6 @@ public class PerfilController implements Initializable {
             try {
                 image = new Image("/mybook/imagens/" + u.getFotoPerfil() + ".jpg");
             } catch (IllegalArgumentException ex) {
-                System.out.println("aaaaaa");
                 u.setFotoPerfil("usuario");
                 image = new Image("/mybook/imagens/" + u.getFotoPerfil() + ".jpg");
             }

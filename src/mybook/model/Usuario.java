@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author Daniel Alves e Gabriela dos Santos
  */
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
     private String password, nome, email, nascimento, cidade, telefone;
     private List<String> postagens;
@@ -30,7 +30,7 @@ public class Usuario implements Serializable{
      * @param telefone telefone do usuário
      */
     public Usuario(String password, String nome, String email, String nascimento,
-            String cidade, String telefone) {
+            String cidade, String telefone, String fotoPerfil) {
 
         this.password = password;
         this.nome = nome;
@@ -38,6 +38,7 @@ public class Usuario implements Serializable{
         this.nascimento = nascimento;
         this.cidade = cidade;
         this.telefone = telefone;
+        this.fotoPerfil = fotoPerfil;
         postagens = new LinkedList();
         arquivos = new LinkedList();
     }

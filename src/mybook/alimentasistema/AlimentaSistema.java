@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mybook.alimentasistema;
 
 import java.io.FileNotFoundException;
@@ -12,25 +7,30 @@ import mybook.exception.CadastroInvalido;
 import mybook.exception.LoginInvalido;
 
 /**
- *
- * @author gabriela
+ *Classe para "alimentar" o programa com alguns usuários
  */
 public class AlimentaSistema {
     
     private Controller ctrl;
     
-    public AlimentaSistema() throws IOException, FileNotFoundException, ClassNotFoundException, CadastroInvalido, LoginInvalido{
-        ctrl = new Controller();
+    public AlimentaSistema(Controller ctrl) throws IOException, FileNotFoundException, ClassNotFoundException, CadastroInvalido, LoginInvalido{
+        this.ctrl = ctrl;
         insereDados();
     }
     
+    /**
+     *Insere os dados dos usuários no programa
+     * @throws CadastroInvalido
+     * @throws IOException
+     * @throws LoginInvalido
+     */
     public void insereDados() throws CadastroInvalido, IOException, LoginInvalido{
        
-       ctrl.cadastrarUsuario("222", "Tyrion Lannister", "222@gmail.com", "274 d.C", "Winterfell", "222-222");
-       ctrl.cadastrarUsuario("333", "Walter White", "333@gmail.com", "07/09/1958", "Albuquerque", "333-333");
-       ctrl.cadastrarUsuario("444", "Bilbo Baggins", "444@gmail.com", "TE 2890", "Condado", "444-444");
-       ctrl.cadastrarUsuario("555", "Ted Mosby", "555@gmail.com", "25/04/1978", "Nova York", "555-555");       
-       ctrl.cadastrarUsuario("666", "Conde Drácula", "666@gmail.com", "Ano 1431", "Transilvânia", "666-666");
+       ctrl.cadastrarUsuario("222", "Tyrion Lannister", "222@gmail.com", "274 d.C", "Winterfell", "222-222", "tyrion");
+       ctrl.cadastrarUsuario("333", "Walter White", "333@gmail.com", "07/09/1958", "Albuquerque", "333-333", "walter");
+       ctrl.cadastrarUsuario("444", "Bilbo Baggins", "444@gmail.com", "TE 2890", "Condado", "444-444", "bilbo");
+       ctrl.cadastrarUsuario("555", "Ted Mosby", "555@gmail.com", "25/04/1978", "Nova York", "555-555", "ted");       
+       ctrl.cadastrarUsuario("666", "Conde Drácula", "666@gmail.com", "Ano 1431", "Transilvânia", "666-666", "dracula");
        
        ctrl.fazerLogin("222@gmail.com", "222");
        ctrl.fazerAmizade("Walter White");
