@@ -23,14 +23,14 @@ public class Controller {
     private Iterator<Usuario> itr;
     private Usuario userLogado;
     private Usuario u;
-    private ControllerArquivo controllerArquivo;
+//    private ControllerArquivo controllerArquivo;
 
     /**
      * Construtor da classe
      */
     public Controller() {
-        controllerArquivo = new ControllerArquivo();
-        controllerArquivo.usuariosCadastrados();
+//        controllerArquivo = new ControllerArquivo();
+//        controllerArquivo.usuariosCadastrados();
         grafo = new Graph();
     }
 
@@ -56,10 +56,10 @@ public class Controller {
      */
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
             String cidade, String telefone) throws CadastroInvalido {
-        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
+        u = new Usuario(password, nome, email, nascimento, cidade, telefone);
 
         if (grafo.addVertex(u)) {
-            controllerArquivo.cadastrarUsuario(u);
+            //controllerArquivo.cadastrarUsuario(u);
             return u;
         }
 
@@ -79,7 +79,7 @@ public class Controller {
      */
     public void carregarUsuarios(String password, String nome, String email, String nascimento,
             String cidade, String telefone, String fotoPerfil) {
-        Usuario u = new Usuario(password, nome, email, nascimento, cidade, telefone);
+        u = new Usuario(password, nome, email, nascimento, cidade, telefone);
         u.setFotoPerfil(fotoPerfil);
         grafo.addVertex(u);
     }
@@ -144,7 +144,7 @@ public class Controller {
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
-            Usuario u = itr.next();
+            u = itr.next();
             if (u.getEmail().equals(email) && u.getPassword().equals(senha)) {
                 userLogado = u;
                 setU(u);
@@ -169,7 +169,7 @@ public class Controller {
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
-            Usuario u = itr.next();
+            u = itr.next();
             if (u.getNome().equalsIgnoreCase(nomeUser)) {
                 usuariosBuscados.add(u);
             }
@@ -252,4 +252,14 @@ public class Controller {
     public Usuario getU() {
         return this.u;
     }
+
+    public Graph getGrafo(){
+        return grafo;
+    }
+
+    public void setGrafo(Graph grafo) {
+        this.grafo = grafo;
+    }
+    
+    
 }

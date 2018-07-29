@@ -5,13 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import mybook.exception.*;
+import java.io.Serializable;
 
 /**
  * Usuário que será criado para salvar os dados no programa
  *
  * @author Daniel Alves e Gabriela dos Santos
  */
-public class Usuario {
+public class Usuario implements Serializable{
 
     private String password, nome, email, nascimento, cidade, telefone;
     private List<String> postagens;
