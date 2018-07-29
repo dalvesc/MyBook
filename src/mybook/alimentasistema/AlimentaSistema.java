@@ -6,6 +6,9 @@ import mybook.controller.Controller;
 import mybook.exception.CadastroInvalido;
 import mybook.exception.LoginInvalido;
 
+/**
+ *Classe para "alimentar" o programa com alguns usuários
+ */
 public class AlimentaSistema {
     
     private Controller ctrl;
@@ -15,6 +18,12 @@ public class AlimentaSistema {
         insereDados();
     }
     
+    /**
+     *Insere os dados dos usuários no programa
+     * @throws CadastroInvalido
+     * @throws IOException
+     * @throws LoginInvalido
+     */
     public void insereDados() throws CadastroInvalido, IOException, LoginInvalido{
        
        ctrl.cadastrarUsuario("222", "Tyrion Lannister", "222@gmail.com", "274 d.C", "Winterfell", "222-222", "tyrion");

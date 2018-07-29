@@ -11,7 +11,7 @@ public class Graph implements IGraph, Serializable {
 
     private Map<Object, Vertex> vertices;
 
-    private class Vertex implements Serializable{
+    private class Vertex implements Serializable {
 
         private Object data;
         private Set adjacencies;

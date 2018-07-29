@@ -27,7 +27,7 @@ public class Controller {
      * Construtor da classe
      */
     public Controller() {
-        
+
         grafo = new Graph();
     }
 
@@ -117,7 +117,7 @@ public class Controller {
         itr = grafo.itrVertices();
 
         while (itr.hasNext()) {
-           Usuario aux = itr.next();
+            Usuario aux = itr.next();
             if (aux.getEmail().equals(email) && aux.getPassword().equals(senha)) {
                 userLogado = aux;
                 setU(aux);
@@ -200,16 +200,6 @@ public class Controller {
         throw new SemAmigos();
     }
 
-    //não acho que seja útil
-    public Usuario obterUsuario(String email) {
-
-        itr = grafo.itrVertices();
-
-        Usuario aux = new Usuario("xx", "xx", email, "xx", "xx", "xx", "xx");
-
-        return (Usuario) grafo.getVertex(aux);
-    }
-
     /**
      *
      * @param u iguala a variável para poder utiliza-la posteriomente
@@ -226,13 +216,20 @@ public class Controller {
         return this.u;
     }
 
-    public Graph getGrafo(){
+    /**
+     *
+     * @return grafo criado
+     */
+    public Graph getGrafo() {
         return grafo;
-}
+    }
 
+    /**
+     *
+     * @param grafo iguala o grafo para utilizar os dados já lidos
+     */
     public void setGrafo(Graph grafo) {
         this.grafo = grafo;
     }
-    
-    
+
 }

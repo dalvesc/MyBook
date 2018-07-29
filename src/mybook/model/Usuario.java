@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author Daniel Alves e Gabriela dos Santos
  */
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
     private String password, nome, email, nascimento, cidade, telefone;
     private List<String> postagens;
