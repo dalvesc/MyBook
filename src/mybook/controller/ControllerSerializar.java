@@ -44,7 +44,7 @@ public class ControllerSerializar {
     public Graph recuperar() throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fileinput = new FileInputStream("grafo.ser");
         ObjectInputStream objectinput = new ObjectInputStream(fileinput);
-
+       
         obj = (Graph) objectinput.readObject();
         objectinput.close();
         return obj;
