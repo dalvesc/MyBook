@@ -66,7 +66,7 @@ public class BuscarAmigosController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     list = facade.buscarUsuario(busca.getText());
-                    selecionar.setText("Selecione o usuário que deseja adicionar");
+                    selecionar.setText("Selecione o usuário que deseja adicionar:");
                     for (Usuario usu : list) {
                         data.add(usu);
                     }
@@ -80,7 +80,7 @@ public class BuscarAmigosController implements Initializable {
                         public void handle(ActionEvent event) {
                             try {
                                 if (facade.fazerAmizade(amigo.getNome())) {
-                                    selecionar.setText("Adicionado");
+                                    selecionar.setText("Adicionado!");
                                 }
                             } catch (IOException ex) {
                                 Logger.getLogger(BuscarAmigosController.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,7 +88,7 @@ public class BuscarAmigosController implements Initializable {
                         }
                     });
                 } catch (SemResultados ex) {
-                    selecionar.setText("Sem resultados");
+                    selecionar.setText("Sem resultados!");
                     Logger.getLogger(BuscarAmigosController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

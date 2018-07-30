@@ -81,7 +81,7 @@ public class ArquivosController implements Initializable {
                     } catch (SemArquivos ex) {
                         Logger.getLogger(ArquivosController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (FileNotFoundException ex) {
-                        caminhoErrado.setText("Caminho errado");
+                        caminhoErrado.setText("Caminho errado!");
                         Logger.getLogger(ArquivosController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {
                         Logger.getLogger(ArquivosController.class.getName()).log(Level.SEVERE, null, ex);

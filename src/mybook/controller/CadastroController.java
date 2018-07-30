@@ -53,7 +53,7 @@ public class CadastroController implements Initializable {
                             nome.getText(), email.getText(), nascimento.getText(),
                             cidade.getText(), telefone.getText(), "null");
                 } catch (CadastroInvalido ex) {
-                    jaCadastrado.setText("Email já cadastrado");
+                    jaCadastrado.setText("Email já cadastrado!");
                     cadastrou = false;
                 } catch (IOException ex) {
                     Logger.getLogger(CadastroController.class.getName()).log(Level.SEVERE, null, ex);

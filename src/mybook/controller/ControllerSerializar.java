@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import mybook.util.*;
+import mybook.util.Graph;
 
 /**
  * Classe para serializar os dados
@@ -14,9 +14,11 @@ import mybook.util.*;
 public class ControllerSerializar {
 
     private Graph obj;
+    private String arqSerial;
 
     public ControllerSerializar(Graph obj) {
         this.obj = obj;
+        arqSerial = "grafo.ser";
     }
 
     /**
@@ -27,8 +29,9 @@ public class ControllerSerializar {
      * @throws IOException
      */
     public void gravar(Graph obj) throws FileNotFoundException, IOException {
-        FileOutputStream fileoutput = new FileOutputStream("grafo.ser");
+        FileOutputStream fileoutput = new FileOutputStream(arqSerial);
         ObjectOutputStream objectoutput = new ObjectOutputStream(fileoutput);
+
         objectoutput.writeObject(obj);
         objectoutput.close();
     }
@@ -41,12 +44,22 @@ public class ControllerSerializar {
      * @throws ClassNotFoundException
      */
     public Graph recuperar() throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fileinput = new FileInputStream("grafo.ser");
+        FileInputStream fileinput = new FileInputStream(arqSerial);
         ObjectInputStream objectinput = new ObjectInputStream(fileinput);
 
         obj = (Graph) objectinput.readObject();
         objectinput.close();
         return obj;
     }
+
+    /**
+     * Iguala a variável a uma que está recebendo por parâmetro
+     *
+     * @param arqSerial variável que será igualada
+     */
+    public void setArqSerial(String arqSerial) {
+        this.arqSerial = arqSerial;
+    }    
+    
 
 }

@@ -7,7 +7,6 @@ import mybook.controller.*;
 import mybook.exception.*;
 import mybook.model.*;
 import mybook.util.*;
-import mybook.alimentasistema.*;
 
 /**
  * Classe para chamar os métodos do controlador.
@@ -25,14 +24,13 @@ public class Facade {
         grafo = ctrl.getGrafo();
         ctrlSerial = new ControllerSerializar(grafo);
         ctrl.setGrafo(ctrlSerial.recuperar());
-        AlimentaSistema as = new AlimentaSistema(ctrl);
+        grafo = ctrl.getGrafo();
     }
 
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
             String cidade, String telefone, String fotoPerfil) throws CadastroInvalido, IOException {
 
         Usuario u = ctrl.cadastrarUsuario(password, nome, email, nascimento, cidade, telefone, fotoPerfil);
-        grafo = ctrl.getGrafo();
         ctrlSerial.gravar(grafo);
         return u;
     }
