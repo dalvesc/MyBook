@@ -7,7 +7,6 @@ import mybook.controller.*;
 import mybook.exception.*;
 import mybook.model.Usuario;
 import mybook.util.Graph;
-import mybook.alimentasistema.AlimentaSistema;
 
 /**
  * Classe para chamar os métodos do controlador.
@@ -19,8 +18,7 @@ public class Facade {
     private Controller ctrl;
     private ControllerSerializar ctrlSerial;
     public Graph grafo;
-    private AlimentaSistema as;
-
+   
     public Facade() throws IOException, FileNotFoundException, ClassNotFoundException, CadastroInvalido, LoginInvalido {
         ctrl = new Controller();               
         grafo = ctrl.getGrafo();

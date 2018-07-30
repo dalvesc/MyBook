@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import mybook.util.Graph;
 
 /**
- * Classe para serializar os dados
+ * Classe para serializar os dados.
  */
 public class ControllerSerializar {
 
@@ -25,8 +25,8 @@ public class ControllerSerializar {
      * Grava os dados em um arquivo .ser
      *
      * @param obj
-     * @throws FileNotFoundException
-     * @throws IOException
+     * @throws FileNotFoundException.
+     * @throws IOException.
      */
     public void gravar(Graph obj) throws FileNotFoundException, IOException {
         FileOutputStream fileoutput = new FileOutputStream(arqSerial);
@@ -39,9 +39,9 @@ public class ControllerSerializar {
     /**
      * Recupera os dados de um arquivo .ser
      *
-     * @return @throws FileNotFoundException
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @return @throws FileNotFoundException.
+     * @throws IOException.
+     * @throws ClassNotFoundException.
      */
     public Graph recuperar() throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fileinput = new FileInputStream(arqSerial);
@@ -51,10 +51,13 @@ public class ControllerSerializar {
         objectinput.close();
         return obj;
     }
-
+    
+    /**
+     * Modifica o nome do arquivo em disco que será acessado.
+     *
+     * @param arqSerial nome do arquivo.
+     */
     public void setArqSerial(String arqSerial) {
         this.arqSerial = arqSerial;
-    }    
-    
-
+    } 
 }

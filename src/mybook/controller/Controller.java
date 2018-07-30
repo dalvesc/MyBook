@@ -12,7 +12,7 @@ import mybook.exception.*;
 /**
  * Classe que controla as interações entre a View e o restante do sistema.
  *
- * @author Daniel Alves e Gabriela dos Santos
+ * @author Daniel Alves e Gabriela dos Santos.
  */
 public class Controller {
 
@@ -22,7 +22,7 @@ public class Controller {
     private Usuario u;
 
     /**
-     * Construtor da classe
+     * Construtor da classe.
      */
     public Controller() {
 
@@ -31,7 +31,7 @@ public class Controller {
 
     /**
      *
-     * @return usuário que está logado no programa
+     * @return usuário que está logado no programa.
      */
     public Usuario getUserLogado() {
         return this.userLogado;
@@ -40,14 +40,14 @@ public class Controller {
     /**
      * Cadastra um usuário no programa.
      *
-     * @param password senha do usuário
-     * @param nome nome do usuário
-     * @param email email do usuário
-     * @param nascimento data de nascimento do usuário
-     * @param cidade cidade do usuário
-     * @param telefone telefone do usuário
-     * @param fotoPerfil foto do usuário
-     * @return usuário que foi cadastrado
+     * @param password senha do usuário.
+     * @param nome nome do usuário.
+     * @param email email do usuário.
+     * @param nascimento data de nascimento do usuário.
+     * @param cidade cidade do usuário.
+     * @param telefone telefone do usuário.
+     * @param fotoPerfil foto do usuário.
+     * @return usuário que foi cadastrado.
      * @throws CadastroInvalido caso o email já tenha sido cadastrado.
      */
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,
@@ -62,7 +62,7 @@ public class Controller {
     }
 
     /**
-     * Remove uma conta do programa
+     * Remove uma conta do programa.
      *
      * @return "true" caso o usuário tenha sido removido e "false" caso não.
      */
@@ -105,12 +105,12 @@ public class Controller {
     }
 
     /**
-     * Faz o login do usuário no programa
+     * Faz o login do usuário no programa.
      *
-     * @param email email de usuário
-     * @param senha senha do usuário
-     * @return usuário que está fazendo login
-     * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta
+     * @param email email de usuário.
+     * @param senha senha do usuário.
+     * @return usuário que está fazendo login.
+     * @throws LoginInvalido caso o email ou a senha do usuário esteja incorreta.
      */
     public boolean fazerLogin(String email, String senha) throws LoginInvalido {
         itr = grafo.itrVertices();
@@ -156,11 +156,11 @@ public class Controller {
     /**
      * Adiciona à lista de postagens do usuário uma nova postagem.
      *
-     * @param u usuário que está recendo a postagem
+     * @param u usuário que está recendo a postagem.
      * @param mensagem mensagem a ser postada.
      * @return "true" se a operação for bem sucedida e "false" se não.
      * @throws mybook.exception.SemPublicacoes caso o usuário não tenha
-     * publicações
+     * publicações.
      */
     public boolean fazerPostagem(Usuario u, String mensagem) throws SemPublicacoes {
         return u.getPostagens().add(mensagem);
@@ -171,20 +171,20 @@ public class Controller {
      *
      * @param caminhoArquivo caminho do arquivo.
      * @return "true" se a operação for bem sucedida e "false" se não.
-     * @throws mybook.exception.SemArquivos caso o usuário não tenha arquivos
+     * @throws mybook.exception.SemArquivos caso o usuário não tenha arquivos.
      * @throws java.io.FileNotFoundException caso o arquivo não tenha sido
-     * encontrado
+     * encontrado.
      */
     public boolean uploadArquivo(String caminhoArquivo) throws SemArquivos, FileNotFoundException {
         return userLogado.getArquivos().add(new File(caminhoArquivo));
     }
 
     /**
-     * Retorna as amizades que o usuário possui
+     * Retorna as amizades que o usuário possui.
      *
      * @param u usuário que será verificado.
      * @return lista com os amigos.
-     * @throws mybook.exception.SemAmigos caso o usuário não tenha amigos
+     * @throws mybook.exception.SemAmigos caso o usuário não tenha amigos.
      */
     public List<Usuario> amizades(Usuario u) throws SemAmigos {
         List<Usuario> list = new LinkedList();
@@ -201,7 +201,7 @@ public class Controller {
 
     /**
      *
-     * @param u iguala a variável para poder utiliza-la posteriomente
+     * @param u iguala a variável para poder utilizá-la posteriomente.
      */
     public void setU(Usuario u) {
         this.u = u;
@@ -209,7 +209,7 @@ public class Controller {
 
     /**
      *
-     * @return variável com os dados do usuário que sendo pedido
+     * @return variável com os dados do usuário que sendo pedido.
      */
     public Usuario getU() {
         return this.u;
@@ -217,7 +217,7 @@ public class Controller {
 
     /**
      *
-     * @return grafo criado
+     * @return grafo criado.
      */
     public Graph getGrafo() {
         return grafo;
@@ -225,7 +225,7 @@ public class Controller {
 
     /**
      *
-     * @param grafo iguala o grafo para utilizar os dados já lidos
+     * @param grafo iguala o grafo para utilizar os dados já lidos.
      */
     public void setGrafo(Graph grafo) {
         this.grafo = grafo;

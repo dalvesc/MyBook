@@ -8,6 +8,6 @@ package mybook.exception;
 public class SemArquivos extends Exception {
 
     public SemArquivos() {
-        super("Não possui arquivos");
+        super("Não possui arquivos!");
     }
 }

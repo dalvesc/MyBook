@@ -8,6 +8,6 @@ package mybook.exception;
 public class SemAmigos extends Exception {
 
     public SemAmigos() {
-        super("Não possui amigos");
+        super("Não possui amigos!");
     }
 }

@@ -8,6 +8,6 @@ package mybook.exception;
 public class SemPublicacoes extends Exception {
 
     public SemPublicacoes() {
-        super("Não possui publicações");
+        super("Não possui publicações!");
     }
 }
