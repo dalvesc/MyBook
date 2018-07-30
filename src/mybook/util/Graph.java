@@ -26,7 +26,7 @@ public class Graph implements IGraph, Serializable {
         public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
-    }
+            }
             if (obj == null) {
                 return false;
             }
@@ -41,7 +41,7 @@ public class Graph implements IGraph, Serializable {
                 return false;
             }
             return true;
-        } 
+        }
     }
 
     public Graph() {
@@ -140,7 +140,7 @@ public class Graph implements IGraph, Serializable {
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-}
+        }
         if (obj == null) {
             return false;
         }
