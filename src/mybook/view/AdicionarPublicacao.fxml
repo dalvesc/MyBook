@@ -18,7 +18,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="mensagem" layoutX="38.0" layoutY="68.0" prefHeight="197.0" prefWidth="265.0" promptText="Digite a mensagem">
+      <TextField fx:id="mensagem" alignment="TOP_LEFT" layoutX="38.0" layoutY="68.0" prefHeight="197.0" prefWidth="265.0" promptText="Digite a mensagem">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>

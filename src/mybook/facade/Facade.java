@@ -19,13 +19,14 @@ public class Facade {
     private Controller ctrl;
     private ControllerSerializar ctrlSerial;
     public Graph grafo;
+    private AlimentaSistema as;
 
     public Facade() throws IOException, FileNotFoundException, ClassNotFoundException, CadastroInvalido, LoginInvalido {
-        ctrl = new Controller();
+        ctrl = new Controller();               
         grafo = ctrl.getGrafo();
         ctrlSerial = new ControllerSerializar(grafo);
         ctrl.setGrafo(ctrlSerial.recuperar());
-        AlimentaSistema as = new AlimentaSistema(ctrl);
+        grafo = ctrl.getGrafo();        
     }
 
     public Usuario cadastrarUsuario(String password, String nome, String email, String nascimento,

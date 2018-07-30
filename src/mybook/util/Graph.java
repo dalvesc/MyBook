@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Graph implements IGraph, Serializable {
 
@@ -19,7 +20,28 @@ public class Graph implements IGraph, Serializable {
         private Vertex(Object data) {
             this.data = data;
             adjacencies = new HashSet();
-        }
+        }        
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final Vertex other = (Vertex) obj;
+            if (!Objects.equals(this.data, other.data)) {
+                return false;
+            }
+            if (!Objects.equals(this.adjacencies, other.adjacencies)) {
+                return false;
+            }
+            return true;
+        } 
     }
 
     public Graph() {
@@ -113,5 +135,22 @@ public class Graph implements IGraph, Serializable {
     public Object getVertex(Object key) {
         return vertices.get(key).data;
     }
-
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Graph other = (Graph) obj;
+        if (!Objects.equals(this.vertices, other.vertices)) {
+            return false;
+        }
+        return true;
+    }
 }

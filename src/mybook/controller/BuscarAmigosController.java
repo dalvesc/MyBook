@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,7 +66,7 @@ public class BuscarAmigosController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     list = facade.buscarUsuario(busca.getText());
-                    selecionar.setText("Selecione o usuário que deseja adicionar");
+                    selecionar.setText("Selecione o usuário que deseja adicionar:");
                     for (Usuario usu : list) {
                         data.add(usu);
                     }
@@ -81,7 +80,7 @@ public class BuscarAmigosController implements Initializable {
                         public void handle(ActionEvent event) {
                             try {
                                 if (facade.fazerAmizade(amigo.getNome())) {
-                                    selecionar.setText("Adicionado");
+                                    selecionar.setText("Adicionado!");
                                 }
                             } catch (IOException ex) {
                                 Logger.getLogger(BuscarAmigosController.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,7 +88,7 @@ public class BuscarAmigosController implements Initializable {
                         }
                     });
                 } catch (SemResultados ex) {
-                    selecionar.setText("Sem resultados");
+                    selecionar.setText("Sem resultados!");
                     Logger.getLogger(BuscarAmigosController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

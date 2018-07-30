@@ -2,9 +2,8 @@ package mybook.alimentasistema;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import mybook.controller.Controller;
-import mybook.exception.CadastroInvalido;
-import mybook.exception.LoginInvalido;
+import mybook.controller.*;
+import mybook.exception.*;
 
 /**
  *Classe para "alimentar" o programa com alguns usuários
@@ -12,9 +11,12 @@ import mybook.exception.LoginInvalido;
 public class AlimentaSistema {
     
     private Controller ctrl;
+    private ControllerSerializar ctrlSerial;
     
     public AlimentaSistema(Controller ctrl) throws IOException, FileNotFoundException, ClassNotFoundException, CadastroInvalido, LoginInvalido{
         this.ctrl = ctrl;
+        ctrlSerial = new ControllerSerializar(ctrl.getGrafo());
+        
         insereDados();
     }
     
@@ -46,6 +48,8 @@ public class AlimentaSistema {
        ctrl.fazerAmizade("Ted Mosby");
        ctrl.fazerAmizade("Bilbo Baggins");
        ctrl.fazerAmizade("Tyrion Lannister");
+       
+       ctrlSerial.gravar(ctrl.getGrafo());
     }    
 }
 

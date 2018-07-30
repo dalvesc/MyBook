@@ -2,11 +2,9 @@ package mybook.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import mybook.model.*;
 import mybook.util.*;
 import mybook.exception.*;
@@ -48,6 +46,7 @@ public class Controller {
      * @param nascimento data de nascimento do usuário
      * @param cidade cidade do usuário
      * @param telefone telefone do usuário
+     * @param fotoPerfil foto do usuário
      * @return usuário que foi cadastrado
      * @throws CadastroInvalido caso o email já tenha sido cadastrado.
      */

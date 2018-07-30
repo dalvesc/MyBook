@@ -47,7 +47,7 @@ public class LoginController implements Initializable {
                         entrarButton.getScene().getWindow().hide();
                     }
                 } catch (LoginInvalido ex) {
-                    loginInvalido.setText("Login Invalido");
+                    loginInvalido.setText("Login Invalido!");
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
