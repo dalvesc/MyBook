@@ -28,6 +28,7 @@ public class Usuario implements Serializable {
      * @param nascimento data de nascimento do usuário
      * @param cidade cidade do usuário
      * @param telefone telefone do usuário
+     * @param fotoPerfil foto de perfil do usuário
      */
     public Usuario(String password, String nome, String email, String nascimento,
             String cidade, String telefone, String fotoPerfil) {
