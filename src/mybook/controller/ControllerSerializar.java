@@ -53,9 +53,9 @@ public class ControllerSerializar {
     }
     
     /**
-     * Modifica o nome do arquivo em disco que será acessado.
+     * Iguala a variável a uma que está recebendo por parâmetro
      *
-     * @param arqSerial nome do arquivo.
+     * @param arqSerial variável que será igualada
      */
     public void setArqSerial(String arqSerial) {
         this.arqSerial = arqSerial;

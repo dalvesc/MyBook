@@ -10,6 +10,7 @@ import org.junit.runners.*;
 @Suite.SuiteClasses({
     GraphTest.class,
     UsuarioTest.class,
-    ControllerTest.class,})
+    ControllerTest.class,
+    ControllerSerializarTest.class,})
 public class AllTests {
 }

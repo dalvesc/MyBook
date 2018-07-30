@@ -26,6 +26,13 @@ import mybook.facade.*;
  * que estes trechos não serão considerados para fins de avaliação.
  *
  **************************************************************************
+ * OBS: Alguns usuários foram previamente cadastrados no sistema: 
+ * 
+ * Nome: Ted Mosby, Email: 555@gmail.com, Senha: 555                                                    
+ * Nome: Tyrion Lannister, Email: 222@gmail.com, Senha: 222                                                    
+ * Nome: Walter White, Email: 333@gmail.com, Senha: 333                                                    
+ * Nome: Conde Drácula, Email: 666@gmail.com, Senha: 666                                                    
+ * Nome: Bilbo Baggins, Email: 444@gmail.com, Senha: 444
  */
 public class MyBook extends Application {
 
